@@ -32,7 +32,7 @@ export default function Home({ data }) {
       </Head>
       <header className="flex justify-between items-center p-4 bg-slate-600 text-white">
         <div>
-          <a href="/" className="text-3xl">Forager</a>
+          <Link href="/" className="text-3xl">Forager</Link>
         </div>
         <nav>
           <ul className="flex gap-2">
