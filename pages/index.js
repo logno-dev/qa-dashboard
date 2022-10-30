@@ -1,5 +1,6 @@
 import Head from 'next/head'
 import clientPromise from '../lib/mongodb'
+import Link from 'next/link'
 
  export async function getServerSideProps(){
   try {
