@@ -1,12 +1,16 @@
 import Layout from '../../components/layout'
 import ProductSelect from '../../components/productSelect'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 export default function Entry(){
-  const initialDate = new Date()
-  const formattedDate = initialDate.getFullYear() + '-' + (initialDate.getMonth() + 1).toString().padStart(2, '0') + '-' + initialDate.getDate()
+  const [ date, setDate ] = useState('')
+  const [ lotCode, setLotCode ] = useState(["103022-2200", "103022-3000"])
 
-  const [ date, setDate ] = useState(formattedDate)
+  useEffect(()=> {
+    let date = new Date()
+    let formattedDate = date.getFullYear() + '-' + (date.getMonth() + 1).toString().padStart(2, '0') + '-' + date.getDate()
+    setDate(formattedDate)
+  },[])
 
 
   return (
@@ -16,12 +20,19 @@ export default function Entry(){
         active="fermented"
       />
       <div className="bg-cyan-600">
-        <div className="flex flex-col items-center bg-white rounded-md my-4 mx-auto max-w-[calc(100%-2rem)] p-4">
+        <div className="flex flex-col items-center bg-white rounded-md my-4 mx-auto min-w-[calc(100%-2rem)] p-4">
           <div className="text-4xl"><input type="date" value={date} onChange={(e)=>setDate(e.target.value)} /></div>
           <div className="text-3xl">+ Add New Lot</div>
           <div className="text-lg">
             <ul>
-              <li>Lot: 103022-2200</li>
+              <li>
+                Lot: {lotCode? (<select id="lot" name="lot">
+                  {lotCode.map((lot)=>(
+                    <option value={lot}>{lot}</option>
+                  ))}
+                </select>)
+                : null}
+              </li>
               <li>Type: Yogurt</li>
               <li>Date: 10/30/2022</li>
               <li>Tank: 2200</li>
