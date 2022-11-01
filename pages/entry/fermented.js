@@ -12,6 +12,15 @@ export default function Entry(){
     setDate(formattedDate)
   },[])
 
+  const tempProduct = [
+    {
+      _id: 871098719348598,
+      lot: 103022-2200,
+      type: "Yogurt",
+      date: "10-30-2022"
+    }
+  ]
+
 
   return (
     <Layout title="Entry">
