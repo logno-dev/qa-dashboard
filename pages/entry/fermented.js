@@ -1,381 +1,422 @@
-import Layout from '../../components/layout'
-import ProductSelect from '../../components/productSelect'
-import { useState, useEffect } from 'react'
+import Layout from "../../components/layout";
+import ProductSelect from "../../components/productSelect";
+import FermentedProductData from "../../components/fermentedProductData";
+import { useState, useEffect } from "react";
 
-export default function Entry(){
-  const [ date, setDate ] = useState('')
-  const [ lotCode, setLotCode ] = useState(["103022-2200", "103022-3000"])
-
-  useEffect(()=> {
-    let date = new Date()
-    let formattedDate = date.getFullYear() + '-' + (date.getMonth() + 1).toString().padStart(2, '0') + '-' + date.getDate()
-    setDate(formattedDate)
-  },[])
-
+export default function Entry() {
   const tempProduct = [
     {
       _id: 871098719348598,
-      lot: 103022-2200,
+      lot: "103022-2200",
       type: "Yogurt",
-      date: "10-30-2022"
-    }
-  ]
+      date: "10-30-2022",
+      tank: "2200",
+      UHT: {
+        tankStart: 0,
+        agStart: "8:00",
+        innoc: "8:15",
+        innocBy: "LB",
+        flashPSI: 140,
+        agEnd: "10:15",
+      },
+      transfer: {
+        breakTime: "2:00",
+        pH: 4.87,
+        speed: 140,
+        temp: 82,
+        whiteMassWeight: 33000,
+        holdWeightStart: 12,
+        holdWeightEnd: 32920,
+        transferBy: "LB",
+      },
+      batching: [
+        {
+          batchNum: 1,
+          solids: 14.83,
+          pH: 5.32,
+          brix: 3.1,
+          sensory: "pass",
+          initial: "LB",
+        },
+        {
+          batchNum: 2,
+          solids: 14.97,
+          pH: 5.41,
+          brix: 3.2,
+          sensory: "pass",
+          initial: "LB",
+        },
+        {
+          batchNum: 3,
+          solids: 15.12,
+          pH: 5.47,
+          brix: 3.1,
+          sensory: "pass",
+          initial: "LB",
+        },
+        {
+          batchNum: 4,
+          solids: 14.75,
+          pH: 5.3,
+          brix: 3.6,
+          sensory: "pass",
+          initial: "LB",
+        },
+      ],
+      fermentation: [
+        {
+          time: "14:00",
+          solids: 14.32,
+          temp: 108,
+          pH: 5.21,
+          brix: 6.1,
+          sensory: "pass",
+          initial: "LB",
+        },
+        {
+          time: "14:00",
+          solids: 14.32,
+          temp: 108,
+          pH: 5.21,
+          brix: 6.1,
+          sensory: "pass",
+          initial: "LB",
+        },
+        {
+          time: "14:00",
+          solids: 14.32,
+          temp: 108,
+          pH: 5.21,
+          brix: 6.1,
+          sensory: "pass",
+          initial: "LB",
+        },
+        {
+          time: "14:00",
+          solids: 14.32,
+          temp: 108,
+          pH: 5.21,
+          brix: 6.1,
+          sensory: "pass",
+          initial: "LB",
+        },
+      ],
+      finishedProduct: [
+        {
+          flavor: "Plain",
+          size: 24,
+          labelVersion: "092822",
+          BME: [
+            {
+              sample: "B",
+              bbDate: "1-12-23",
+              time: "8:12",
+              temp: 72,
+              solids: 20.02,
+              pH: 4.22,
+              brix: 10.2,
+              labelVersion: "092822",
+              initial: "LB",
+              viscosity: null,
+              review: null,
+              shelfLife: null,
+            },
+            {
+              sample: "M",
+              bbDate: "1-12-23",
+              time: "8:12",
+              temp: 72,
+              solids: 20.02,
+              pH: 4.22,
+              brix: 10.2,
+              labelVersion: "092822",
+              initial: "LB",
+              viscosity: null,
+              review: null,
+              shelfLife: null,
+            },
+            {
+              sample: "E",
+              bbDate: "1-12-23",
+              time: "8:12",
+              temp: 72,
+              solids: 20.02,
+              pH: 4.22,
+              brix: 10.2,
+              labelVersion: "092822",
+              initial: "LB",
+              viscosity: null,
+              review: null,
+              shelfLife: null,
+            },
+          ],
+        },
+        {
+          flavor: "Vanilla",
+          size: 24,
+          labelVersion: "092822",
+          BME: [
+            {
+              sample: "B",
+              bbDate: "1-12-23",
+              time: "12:12",
+              temp: 72,
+              solids: 20.02,
+              pH: 4.22,
+              brix: 10.2,
+              labelVersion: "092822",
+              initial: "LB",
+              viscosity: null,
+              review: null,
+              shelfLife: null,
+            },
+            {
+              sample: "M",
+              bbDate: "1-12-23",
+              time: "12:12",
+              temp: 72,
+              solids: 20.02,
+              pH: 4.22,
+              brix: 10.2,
+              labelVersion: "092822",
+              initial: "LB",
+              viscosity: null,
+              review: null,
+              shelfLife: null,
+            },
+            {
+              sample: "E",
+              bbDate: "1-12-23",
+              time: "12:12",
+              temp: 72,
+              solids: 20.02,
+              pH: 4.22,
+              brix: 10.2,
+              labelVersion: "092822",
+              initial: "LB",
+              viscosity: null,
+              review: null,
+              shelfLife: null,
+            },
+          ],
+        },
+      ],
+    },
+    {
+      _id: 8710987123452345,
+      lot: "103022-3000",
+      type: "Yogurt",
+      date: "10-30-2022",
+      tank: "3000",
+      UHT: {
+        tankStart: 0,
+        agStart: "13:00",
+        innoc: "13:15",
+        innocBy: "LB",
+        flashPSI: 140,
+        agEnd: "15:15",
+      },
+      transfer: {
+        breakTime: "4:00",
+        pH: 4.63,
+        speed: 140,
+        temp: 82,
+        whiteMassWeight: 22000,
+        holdWeightStart: 10,
+        holdWeightEnd: 19920,
+        transferBy: "LB",
+      },
+      batching: [
+        {
+          batchNum: 1,
+          solids: 14.63,
+          pH: 5.32,
+          brix: 3.1,
+          sensory: "pass",
+          initial: "LB",
+        },
+        {
+          batchNum: 2,
+          solids: 14.47,
+          pH: 5.41,
+          brix: 3.2,
+          sensory: "pass",
+          initial: "LB",
+        },
+        {
+          batchNum: 3,
+          solids: 15.02,
+          pH: 5.47,
+          brix: 3.1,
+          sensory: "pass",
+          initial: "LB",
+        },
+        {
+          batchNum: 4,
+          solids: 14.85,
+          pH: 5.3,
+          brix: 3.6,
+          sensory: "pass",
+          initial: "LB",
+        },
+      ],
+      fermentation: [
+        {
+          time: "14:00",
+          solids: 14.32,
+          temp: 108,
+          pH: 5.21,
+          brix: 6.1,
+          sensory: "pass",
+          initial: "LB",
+        },
+        {
+          time: "14:00",
+          solids: 14.32,
+          temp: 108,
+          pH: 5.21,
+          brix: 6.1,
+          sensory: "pass",
+          initial: "LB",
+        },
+        {
+          time: "14:00",
+          solids: 14.32,
+          temp: 108,
+          pH: 5.21,
+          brix: 6.1,
+          sensory: "pass",
+          initial: "LB",
+        },
+        {
+          time: "14:00",
+          solids: 14.32,
+          temp: 108,
+          pH: 5.21,
+          brix: 6.1,
+          sensory: "pass",
+          initial: "LB",
+        },
+      ],
+      finishedProduct: [
+        {
+          flavor: "Vanilla",
+          size: 24,
+          labelVersion: "092822",
+          BME: [
+            {
+              sample: "B",
+              bbDate: "1-12-23",
+              time: "8:12",
+              temp: 72,
+              solids: 20.02,
+              pH: 4.22,
+              brix: 10.2,
+              labalVersion: "092822",
+              initial: "LB",
+              viscosity: null,
+              review: null,
+              shelfLife: null,
+            },
+            {
+              sample: "M",
+              bbDate: "1-12-23",
+              time: "8:12",
+              temp: 72,
+              solids: 20.02,
+              pH: 4.22,
+              brix: 10.2,
+              labalVersion: "092822",
+              initial: "LB",
+              viscosity: null,
+              review: null,
+              shelfLife: null,
+            },
+            {
+              sample: "E",
+              bbDate: "1-12-23",
+              time: "8:12",
+              temp: 72,
+              solids: 20.02,
+              pH: 4.22,
+              brix: 10.2,
+              labalVersion: "092822",
+              initial: "LB",
+              viscosity: null,
+              review: null,
+              shelfLife: null,
+            },
+          ],
+        },
+      ],
+    },
+  ];
 
+  console.log;
+
+  const [date, setDate] = useState("");
+  const [productView, setProductView] = useState();
+
+  useEffect(() => {
+    let date = new Date();
+    let formattedDate =
+      date.getFullYear() +
+      "-" +
+      (date.getMonth() + 1).toString().padStart(2, "0") +
+      "-" +
+      date.getDate().toString().padStart(2, "0");
+    setDate(formattedDate);
+  }, []);
+
+  function handleLotChange(e) {
+    setProductView(
+      tempProduct.find((product) => product.lot === e.target.value)
+    );
+    console.log(productView);
+  }
 
   return (
     <Layout title="Entry">
-      <ProductSelect 
-        dir="entry"
-        active="fermented"
-      />
+      <ProductSelect dir="entry" active="fermented" />
       <div className="bg-cyan-600">
         <div className="flex flex-col items-center bg-white rounded-md my-4 mx-auto min-w-[calc(100%-2rem)] p-4">
-          <div className="text-4xl"><input type="date" value={date} onChange={(e)=>setDate(e.target.value)} /></div>
+          <div className="text-4xl">
+            <input
+              type="date"
+              value={date}
+              onChange={(e) => setDate(e.target.value)}
+            />
+          </div>
           <div className="text-3xl">+ Add New Lot</div>
           <div className="text-lg">
             <ul>
               <li>
-                Lot: {lotCode? (<select id="lot" name="lot">
-                  {lotCode.map((lot)=>(
-                    <option value={lot}>{lot}</option>
-                  ))}
-                </select>)
-                : null}
+                Lot:{" "}
+                {tempProduct.length > 0 ? (
+                  <select
+                    id="lot"
+                    name="lot"
+                    onChange={(e) => handleLotChange(e)}
+                  >
+                    <option value="">Select Lot</option>
+                    {tempProduct.map((lot) => (
+                      <option key={lot.lot} value={lot.lot}>
+                        {lot.lot}
+                      </option>
+                    ))}
+                  </select>
+                ) : null}
               </li>
-              <li>Type: Yogurt</li>
+              <li>Type: </li>
               <li>Date: 10/30/2022</li>
               <li>Tank: 2200</li>
             </ul>
-            </div>
-
-              <h3 className="text-yellow-700">UHT Ops</h3>
-            <div className="border-yellow-500 border-2 rounded-lg p-2 my-2">
-              <table>
-                <thead>
-                <tr>
-                  <th>Tank Start Weight</th>
-                  <th>Agitation Start</th>
-                  <th>Innoculation</th>
-                  <th>Innoc By</th>
-                  <th>Flash PSI</th>
-                  <th>Agitation End</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                  <td>0</td>
-                  <td>8:00am</td>
-                  <td>8:15am</td>
-                  <td>LB</td>
-                  <td>140</td>
-                  <td>10:15am</td>
-                </tr>
-                </tbody>
-              </table>
-            </div>
-
-              <h3 className="text-orange-700">QA Transfer</h3>
-            <div className="border-orange-500 border-2 rounded-lg p-2 my-2">
-              <table>
-                <thead>
-                  <tr>
-                    <th>Break Time</th>
-                    <th>pH</th>
-                    <th>Speed</th>
-                    <th>Temp(&deg;F)</th>
-                    <th>White Mass Weight</th>
-                    <th>Hold Start Weight</th>
-                    <th>Hold End Weight</th>
-                    <th>Transfer by</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>2:00am</td>
-                    <td>4.87</td>
-                    <td>140</td>
-                    <td>82</td>
-                    <td>33000</td>
-                    <td>12</td>
-                    <td>32920</td>
-                    <td>LB</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          
-
-            <h3 className="text-red-700">Batching</h3>
-          <div className="border-red-500 border-2 rounded-lg p-2 my-2">
-            <table>
-              <thead>
-                <tr>
-                  <th>Batch #</th>
-                  <th>Solids</th>
-                  <th>pH</th>
-                  <th>Brix</th>
-                  <th>Sensory(Pass/Fail)</th>
-                  <th>Initial</th>
-                </tr>
-              </thead>
-              <tbody>
-              <tr>
-                  <td>1</td>
-                  <td>14.83</td>
-                  <td>5.32</td>
-                  <td>3.1</td>
-                  <td>pass</td>
-                  <td>LB</td>
-                </tr>
-                <tr>
-                  <td>2</td>
-                  <td>14.97</td>
-                  <td>5.41</td>
-                  <td>3.2</td>
-                  <td>pass</td>
-                  <td>LB</td>
-                </tr>
-                <tr>
-                  <td>3</td>
-                  <td>15.12</td>
-                  <td>5.47</td>
-                  <td>3.1</td>
-                  <td>pass</td>
-                  <td>LB</td>
-                </tr>
-                <tr>
-                  <td>4</td>
-                  <td>14.75</td>
-                  <td>5.30</td>
-                  <td>3.6</td>
-                  <td>pass</td>
-                  <td>LB</td>
-                </tr>
-                <tr>
-                  <td colSpan="6">+ add new batch</td>
-                </tr>
-              </tbody>
-            </table>
           </div>
-
-            <h3 className="text-gray-700">Fermentation</h3>
-          <div className="border-gray-500 border-2 rounded-lg p-2 my-2">
-            <table>
-              <thead>
-                <tr>
-                  <th>Time</th>
-                  <th>Solids</th>
-                  <th>Temp(&deg;F)</th>
-                  <th>pH</th>
-                  <th>Brix</th>
-                  <th>Sensory(Pass/Fail)</th>
-                  <th>Initial</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>2:00pm</td>
-                  <td>14.32</td>
-                  <td>108</td>
-                  <td>5.21</td>
-                  <td>6.1</td>
-                  <td>pass</td>
-                  <td>LB</td>
-                </tr>
-                <tr>
-                  <td>2:00pm</td>
-                  <td>14.32</td>
-                  <td>108</td>
-                  <td>5.21</td>
-                  <td>6.1</td>
-                  <td>pass</td>
-                  <td>LB</td>
-                </tr>
-                <tr>
-                  <td>2:00pm</td>
-                  <td>14.32</td>
-                  <td>108</td>
-                  <td>5.21</td>
-                  <td>6.1</td>
-                  <td>pass</td>
-                  <td>LB</td>
-                </tr>
-                <tr>
-                  <td>2:00pm</td>
-                  <td>14.32</td>
-                  <td>108</td>
-                  <td>5.21</td>
-                  <td>6.1</td>
-                  <td>pass</td>
-                  <td>LB</td>
-                </tr>
-                <tr>
-                  <td>2:00pm</td>
-                  <td>14.32</td>
-                  <td>108</td>
-                  <td>5.21</td>
-                  <td>6.1</td>
-                  <td>pass</td>
-                  <td>LB</td>
-                </tr>
-                <tr>
-                  <td colSpan="7">+ add new line</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-
-            <h3 className="text-blue-700">Finished Products</h3>
-          <div className="border-blue-500 border-2 rounded-lg p-2 my-2">
-            <div className="text-cyan-700">
-              <ul>
-                <li>Flavor: Vanilla</li>
-                <li>Size: 24oz</li>
-                <li>Label Version: 092822</li>
-              </ul>
-              <div className="border-cyan-500 border-2 rounded-lg p-2 my-2">
-                <table>
-                  <thead>
-                    <tr>
-                      <th>BME</th>
-                      <th>BB Date</th>
-                      <th>Time</th>
-                      <th>Temp(&deg;F)</th>
-                      <th>Solids</th>
-                      <th>pH</th>
-                      <th>Brix</th>
-                      <th>Label Version</th>
-                      <th>Initial</th>
-                      <th>Viscosity</th>
-                      <th>Review</th>
-                      <th>Shelf Life Assessment</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>B</td>
-                      <td>1/12/23</td>
-                      <td>8:12am</td>
-                      <td>72</td>
-                      <td>20.02</td>
-                      <td>4.22</td>
-                      <td>10.2</td>
-                      <td>092822</td>
-                      <td>LB</td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                    </tr>
-                    <tr>
-                      <td>M</td>
-                      <td>1/12/23</td>
-                      <td>8:12am</td>
-                      <td>72</td>
-                      <td>20.02</td>
-                      <td>4.22</td>
-                      <td>10.2</td>
-                      <td>092822</td>
-                      <td>LB</td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                    </tr>
-                    <tr>
-                      <td>E</td>
-                      <td>1/12/23</td>
-                      <td>8:12am</td>
-                      <td>72</td>
-                      <td>20.02</td>
-                      <td>4.22</td>
-                      <td>10.2</td>
-                      <td>092822</td>
-                      <td>LB</td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-
-            <div className="text-cyan-700">
-              <ul>
-                <li>Flavor: Vanilla</li>
-                <li>Size: 24oz</li>
-                <li>Label Version: 092822</li>
-              </ul>
-              <div className="border-cyan-500 border-2 rounded-lg p-2 my-2">
-                <table>
-                  <thead>
-                    <tr>
-                      <th>BME</th>
-                      <th>BB Date</th>
-                      <th>Time</th>
-                      <th>Temp(&deg;F)</th>
-                      <th>Solids</th>
-                      <th>pH</th>
-                      <th>Brix</th>
-                      <th>Label Version</th>
-                      <th>Initial</th>
-                      <th>Viscosity</th>
-                      <th>Review</th>
-                      <th>Shelf Life Assessment</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>B</td>
-                      <td>1/12/23</td>
-                      <td>8:12am</td>
-                      <td>72</td>
-                      <td>20.02</td>
-                      <td>4.22</td>
-                      <td>10.2</td>
-                      <td>092822</td>
-                      <td>LB</td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                    </tr>
-                    <tr>
-                      <td>M</td>
-                      <td>1/12/23</td>
-                      <td>8:12am</td>
-                      <td>72</td>
-                      <td>20.02</td>
-                      <td>4.22</td>
-                      <td>10.2</td>
-                      <td>092822</td>
-                      <td>LB</td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                    </tr>
-                    <tr>
-                      <td>E</td>
-                      <td>1/12/23</td>
-                      <td>8:12am</td>
-                      <td>72</td>
-                      <td>20.02</td>
-                      <td>4.22</td>
-                      <td>10.2</td>
-                      <td>092822</td>
-                      <td>LB</td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-<h4 className="text-3xl">+Add SKU</h4>
-
-          </div>
-          
+          {productView? 
+          <FermentedProductData product={productView}/>
+          : null }
         </div>
       </div>
     </Layout>
-  )
+  );
 }
