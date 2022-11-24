@@ -1,8 +1,15 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function FermentedUHT({ product, handleSaveData }) {
   const [edit, toggleEdit] = useState(true);
   const [uhtData, setUhtData] = useState({ ...product });
+
+  useEffect(()=>{
+    setUhtData({...product})
+    if(!product){
+      toggleEdit(true)
+    }
+  },[product])
 
   function handleOnChange(e, item) {
     setUhtData({ ...uhtData, [item]: e.target.value });
@@ -72,7 +79,7 @@ export default function FermentedUHT({ product, handleSaveData }) {
                   onChange={(e) => handleOnChange(e, "agEnd")}></input>
               </td>
               <td>
-                <button type="button" onClick={() => toggleEdit(false)}>
+                <button type="button" onClick={onSave}>
                   Save
                 </button>
               </td>

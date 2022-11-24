@@ -24,23 +24,35 @@ export default function Entry() {
     setDate(formattedDate);
   }, []);
 
+  useEffect(() => {
+    console.log('change made to productByDate', productsByDate)
+  },[productsByDate])
+
+  useEffect(()=> {
+    const tempItemList = [...productsByDate]
+    const index = tempItemList.findIndex(item=>item.lot===productView.lot)
+    tempItemList[index] = productView
+    setProductsByDate(tempItemList)
+  },[productView])
+
   function handleLotChange(e) {
-    setProductView(
-      productsByDate.find((product) => product.lot === e.target.value)
-    );
+    const tempItem = productsByDate.find((product) => product.lot === e.target.value)
+    setProductView({...tempItem });
     console.log(productView);
   }
 
   function handleNewLot(newLot) {
-    console.log(newLot)
-    setProductsByDate(current=>[...current, newLot])
-    console.log(productsByDate)
+    setProductsByDate([...productsByDate, newLot])
+    console.log('product list', productsByDate)
   }
 
   function handleSaveData(category, data) {
     setProductView({...productView, [category]: data})
+ }
+  
+  function changeDate(e) {
+    setDate(e.target.value)
   }
-
   return (
     <Layout title="Entry">
       <ProductSelect dir="entry" active="fermented" />
@@ -53,7 +65,7 @@ export default function Entry() {
               onChange={(e) => setDate(e.target.value)}
             />
           </div>
-          <NewLotModal handleSubmit={handleNewLot} />
+          <NewLotModal currentDate={date} handleSubmit={handleNewLot} />
 
           {(productsByDate.length > 0)
           ?<select onChange={handleLotChange}>
@@ -66,8 +78,8 @@ export default function Entry() {
           
           {productView
           ? (
-            <FermentedUHT product={productView.UHT} handleSaveData={handleSaveData} />
-          )
+       <FermentedUHT product={productView.UHT} handleSaveData={handleSaveData} />
+          ) 
           : null
         }
 

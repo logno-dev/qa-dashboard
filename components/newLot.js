@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 
-export default function NewLotModal({handleSubmit}) {
-    const [date, setDate] = useState()
+export default function NewLotModal({handleSubmit, currentDate}) {
+    // const [date, setDate] = useState(currentDate)
     const [isOpen, setIsOpen] = useState(false)
     const [newLot, setNewLot] = useState()
 
@@ -11,18 +11,18 @@ export default function NewLotModal({handleSubmit}) {
     }
 
 
-    useEffect(()=>{
-        const date = new Date()
-        const formatedDate = (date.getMonth() + 1).toString().padStart(2, '0') + date.getDate().toString().padStart(2, '0') + date.getFullYear().toString().slice(-2)
-        setDate(formatedDate)
-    },
-    [])
+    // useEffect(()=>{
+    //     const date = new Date()
+    //     const formatedDate = (date.getMonth() + 1).toString().padStart(2, '0') + date.getDate().toString().padStart(2, '0') + date.getFullYear().toString().slice(-2)
+    //     setDate(formatedDate)
+    // },
+    // [])
 
     return (
         <>
             {isOpen
             ?<div className="flex">
-                <input type="number" placeholder="Ferm Tank#" onChange={(e)=>setNewLot({...newLot, lot:`${date}-${e.target.value}`})}></input>
+                <input type="number" placeholder="Ferm Tank#" onChange={(e)=>setNewLot({...newLot, lot:`${currentDate}-${e.target.value}`})}></input>
                 <select onChange={(e)=>setNewLot({...newLot, type:e.target.value})}>
                     <option value={null}>-select mass type-</option>
                     <option value="yogurt">Yogurt</option>
