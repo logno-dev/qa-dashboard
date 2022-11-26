@@ -26,18 +26,18 @@ export default function Entry() {
 
   useEffect(() => {
     console.log('change made to productByDate', productsByDate)
-  },[productsByDate])
+  }, [productsByDate])
 
-  useEffect(()=> {
+  useEffect(() => {
     const tempItemList = [...productsByDate]
-    const index = tempItemList.findIndex(item=>item.lot===productView.lot)
+    const index = tempItemList.findIndex(item => item.lot === productView.lot)
     tempItemList[index] = productView
     setProductsByDate(tempItemList)
-  },[productView])
+  }, [productView])
 
   function handleLotChange(e) {
     const tempItem = productsByDate.find((product) => product.lot === e.target.value)
-    setProductView({...tempItem });
+    setProductView({ ...tempItem });
     console.log(productView);
   }
 
@@ -47,9 +47,9 @@ export default function Entry() {
   }
 
   function handleSaveData(category, data) {
-    setProductView({...productView, [category]: data})
- }
-  
+    setProductView({ ...productView, [category]: data })
+  }
+
   function changeDate(e) {
     setDate(e.target.value)
   }
@@ -68,20 +68,23 @@ export default function Entry() {
           <NewLotModal currentDate={date} handleSubmit={handleNewLot} />
 
           {(productsByDate.length > 0)
-          ?<select onChange={handleLotChange}>
-            <option value={null}>Select Lot</option>
-            {productsByDate.map(item => (
-              <option key={uuid()} value={item.lot}>{item.lot} - {item.type}</option>
-            ))}
-          </select>
-          :null}
-          
+            ? <select onChange={handleLotChange}>
+              <option value={null}>Select Lot</option>
+              {productsByDate.map(item => (
+                <option key={uuid()} value={item.lot}>{item.lot} - {item.type}</option>
+              ))}
+            </select>
+            : null}
+
           {productView
-          ? (
-       <FermentedUHT product={productView.UHT} handleSaveData={handleSaveData} />
-          ) 
-          : null
-        }
+            ? (
+              <>
+                <h2 className="text-3xl font-bold">{productView.lot}</h2>
+                <FermentedUHT product={productView.UHT} handleSaveData={handleSaveData} />
+              </>
+            )
+            : null
+          }
 
         </div>
       </div>
