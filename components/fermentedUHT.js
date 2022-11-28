@@ -2,14 +2,31 @@ import { useState, useEffect } from "react";
 
 export default function FermentedUHT({ product, handleSaveData }) {
   const [edit, toggleEdit] = useState(true);
-  const [uhtData, setUhtData] = useState({ ...product });
+  const [uhtData, setUhtData] = useState({
+    startWeight: "",
+    agStart: "",
+    innocTime: "",
+    innocBy: "",
+    flash: "",
+    agEnd: ""
+  });
 
-  useEffect(()=>{
-    setUhtData({...product})
-    if(!product){
+  useEffect(() => {
+    if (product.UHT) {
+      toggleEdit(false)
+      setUhtData({...product.UHT})
+    } else {
       toggleEdit(true)
+      setUhtData({
+        startWeight: "",
+        agStart: "",
+        innocTime: "",
+        innocBy: "",
+        flash: "",
+        agEnd: ""
+      })
     }
-  },[product])
+  }, [product])
 
   function handleOnChange(e, item) {
     setUhtData({ ...uhtData, [item]: e.target.value });

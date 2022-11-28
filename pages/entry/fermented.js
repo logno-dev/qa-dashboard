@@ -69,7 +69,7 @@ export default function Entry() {
 
           {(productsByDate.length > 0)
             ? <select onChange={handleLotChange}>
-              <option value={null}>Select Lot</option>
+              <option value="">Select Lot</option>
               {productsByDate.map(item => (
                 <option key={uuid()} value={item.lot}>{item.lot} - {item.type}</option>
               ))}
@@ -80,7 +80,7 @@ export default function Entry() {
             ? (
               <>
                 <h2 className="text-3xl font-bold">{productView.lot}</h2>
-                <FermentedUHT product={productView.UHT} handleSaveData={handleSaveData} />
+                <FermentedUHT product={productView} handleSaveData={handleSaveData} />
               </>
             )
             : null
