@@ -1,6 +1,6 @@
 import Head from 'next/head'
 import Header from '../components/header'
-import Sidebar from './productSelect'
+// import Sidebar from './productSelect'
 
 export default function Layout({ children, title}) {
   return (
