@@ -26,6 +26,10 @@ a {
  @apply  bg-green-500 text-white text-lg font-bold p-2 rounded-md hover:scale-105 hover:drop-shadow-md
 }
 
+table {
+  @apply w-full
+}
+
 thead {
   @apply bg-gray-300 border-gray-300 border-2
 }
