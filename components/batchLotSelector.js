@@ -97,14 +97,22 @@ export default function BatchLotSelector({ data }) {
             }
           }
       }
-      let res = await fetch('http://localhost:3000/api/addLot', {
-        method: 'POST',
-        body: JSON.stringify(newProduct)
-      })
-      // res.json(res.ops[0])
-      setTankNum('')
-      setProductType('')
-      return router.push(`/batching/${lot}`)
+      // let res = await fetch('http://localhost:3000/api/addLot', {
+      //   method: 'POST',
+      //   body: JSON.stringify(newProduct)
+      // })
+      try {
+        await fetch('/api/addLot', {
+          method: 'POST',
+          body: JSON.stringify(newProduct)
+        })
+      } catch (e) {
+        console.log(e)
+      } finally {
+        setTankNum('')
+        setProductType('')
+        return router.push(`/batching/${lot}`)
+      }
     }
   }
 
