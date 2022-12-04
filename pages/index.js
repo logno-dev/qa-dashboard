@@ -7,7 +7,7 @@ export async function getServerSideProps() {
     const client = await clientPromise;
     const db = client.db("products");
 
-    const data = await db.collection("fermented").find({}).toArray();
+    const data = await db.collection("batching").find({}).toArray();
 
     return {
       props: { data: JSON.parse(JSON.stringify(data)) },
@@ -27,7 +27,7 @@ export default function Home({ data }) {
         <h2>Date</h2>
         <ul>
           {data.map((product) => (
-            <li key={product._id}>{product.type}</li>
+            <li key={product._id}>{product.productType}</li>
           ))}
         </ul>
       </Layout>

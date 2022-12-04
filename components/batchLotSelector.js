@@ -2,6 +2,7 @@ import Link from 'next/link'
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
 import { format } from 'date-fns'
+import uuid from 'react-uuid'
 
 
 export default function BatchLotSelector({ data }) {
@@ -18,9 +19,9 @@ export default function BatchLotSelector({ data }) {
     setDuplicate(false)
   }
 
-  useEffect(()=>{
-  // console.log(data)
-  },[])
+  useEffect(() => {
+    // console.log(data)
+  }, [])
 
   async function addNewLot(e) {
     e.preventDefault()
@@ -33,22 +34,74 @@ export default function BatchLotSelector({ data }) {
       setValid(false)
       return
     } else if (
-      (data.findIndex(e=>e.lot === lot)) !== -1
+      (data.findIndex(e => e.lot === lot)) !== -1
     ) {
       setDuplicate(true)
       return
     } else {
-      const newObject = {
-        lot,
-        tankNum,
-        productType
+      let newProduct
+      switch (productType) {
+        case 'esl':
+          newProduct = {
+            lot,
+            tankNum,
+            productType,
+            fermented: false,
+          }
+          break
+        default:
+          newProduct = {
+            _id: uuid(),
+            dateAdded: new Date(),
+            lot,
+            tankNum,
+            productType,
+            fermented: true,
+            finalized: false,
+            ferm: {
+              tankStart: "",
+              agStart: "",
+              innocTime: "",
+              innocBy: "",
+              flash: "",
+              agEnd: ""
+            },
+            batches: [
+              {
+                batchNum: 1,
+                solids: "",
+                pH: "",
+                brix: "",
+                passFail: "",
+                signOff: "",
+              }
+            ],
+            fermQA: [
+              {
+                time: "",
+                solids: "",
+                pH: "",
+                brix: "",
+                passFail: "",
+                signOff: ""
+              }
+            ],
+            transfer: {
+              breakTime: "",
+              pH: "",
+              speed: "",
+              temp: "",
+              whiteMassWeight: "",
+              holdTankWeightStart: "",
+              holdTankWeightEnd: ""
+            }
+          }
       }
-      console.log(newObject)
-      let res = await fetch('/api/updateLot',{
+      let res = await fetch('http://localhost:3000/api/addLot', {
         method: 'POST',
-        body: JSON.stringify(newObject)
+        body: JSON.stringify(newProduct)
       })
-      // res = await res.json()
+      // res.json(res.ops[0])
       setTankNum('')
       setProductType('')
       return router.push(`/batching/${lot}`)
