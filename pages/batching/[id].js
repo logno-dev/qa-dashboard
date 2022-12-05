@@ -34,13 +34,15 @@ export default function BatchLot({ data }) {
   const [selectedLot, setSelectedLot] = useState(data[data.findIndex(e => e.lot === id)])
   const [saved, setSaved] = useState(true)
   const [changed, setChanged] = useState(false)
+  const [savedItem, setSavedItem] = useState(data[data.findIndex(e => e.lot === id)])
 
   useEffect(() => {
     setSelectedLot(data[data.findIndex(e => e.lot === id)])
+    setSavedItem(data[data.findIndex(e => e.lot === id)])
   }, [id])
 
   useEffect(() => {
-    // console.log(selectedLot)
+    // console.log(savedItem)
   }, [selectedLot])
 
 
@@ -69,7 +71,7 @@ export default function BatchLot({ data }) {
       window.removeEventListener('beforeunload', beforeUnloadHandler);
       router.events.off('routeChangeStart', beforeRouteHandler);
     };
-  }, [!saved]);
+  }, [saved]);
 
   const Status = () => {
     if (changed && !saved) {
@@ -89,9 +91,15 @@ export default function BatchLot({ data }) {
 
   function updateItemFromChild(product, firstLoad) {
     setSelectedLot(product)
-    if (!firstLoad) {
+    if (JSON.stringify(savedItem) === JSON.stringify(product)) {
+      setSaved(true)
+      setChanged(false)
+    } else if (!firstLoad) {
       setChanged(true)
       setSaved(false)
+    } else if (firstLoad) {
+      setChanged(false)
+      setSaved(true)
     }
   }
 
@@ -108,6 +116,7 @@ export default function BatchLot({ data }) {
       console.log('saving...')
     } finally {
       setSaved(true)
+      setSavedItem(selectedLot)
     }
   }
 

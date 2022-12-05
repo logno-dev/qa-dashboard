@@ -4,13 +4,9 @@ import { useRouter } from 'next/router'
 
 export default function Header() {
 
-  const [active, setActive] = useState()
   const router = useRouter()
   const [currentPath, setCurrentPath] = useState(router.pathname)
 
-  useEffect(() => {
-    console.log(currentPath)
-  }, [currentPath])
 
   return (
     <header className="flex justify-start items-center p-4 bg-gray-900 text-white">

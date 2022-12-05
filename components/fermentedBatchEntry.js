@@ -38,7 +38,7 @@ export default function FermentedBatchEntry({ product, handleChange }) {
     }
     let newBatchArray = [...childItem.batches]
     newBatchArray.push(emptyBatch)
-    console.log(newBatchArray)
+    // console.log(newBatchArray)
     setChildItem({
       ...childItem, batches: newBatchArray
     })
@@ -63,14 +63,22 @@ export default function FermentedBatchEntry({ product, handleChange }) {
     })
   }
 
+  useEffect(()=>{
+  // console.log(saveCompareItem)
+  },[product])
+
   useEffect(() => {
     handleChange(childItem, firstLoad)
     setFirstLoad(false)
   }, [childItem])
 
   useEffect(() => {
+     if (!childItem || JSON.stringify(product) !== JSON.stringify(childItem)) {
+      setFirstLoad(true) }
+    if (JSON.stringify(product) !== JSON.stringify(childItem) && product.lot === childItem.lot) {
+      setFirstLoad(false)
+    } 
     setChildItem(product)
-    setFirstLoad(true)
   }, [product])
 
   return (
@@ -84,7 +92,7 @@ export default function FermentedBatchEntry({ product, handleChange }) {
         <thead>
           <tr>
             <th>
-              Ferm Tank Start Weight
+              Ferm Tank Start Weight(lbs)
             </th>
             <th>
               Agitation Start
@@ -122,7 +130,7 @@ export default function FermentedBatchEntry({ product, handleChange }) {
               Batch #
             </th>
             <th>
-              Solids
+              Solids(%)
             </th>
             <th>
               pH
@@ -168,7 +176,7 @@ export default function FermentedBatchEntry({ product, handleChange }) {
               Time
             </th>
             <th>
-              Solids
+              Solids(%)
             </th>
             <th>
               pH
@@ -177,7 +185,7 @@ export default function FermentedBatchEntry({ product, handleChange }) {
               Brix
             </th>
             <th>
-              Temp &deg; F
+              Temp (&deg;F)
             </th>
             <th>
               Pass/Fail
@@ -224,24 +232,24 @@ export default function FermentedBatchEntry({ product, handleChange }) {
               Speed
             </th>
             <th>
-              Temp
+              Temp (&deg;F)
             </th>
             <th>
-              White Mass Weight
+              White Mass Weight(lbs)
             </th>
             <th>
-              Hold Tank Start Weight
+              Hold Tank Start Weight(lbs)
             </th>
-             <th>
-              Hold Tank End Weight
+            <th>
+              Hold Tank End Weight(lbs)
             </th>
-              <th>
+            <th>
               Transfer End
             </th>
-              <th>
+            <th>
               Sign Off
             </th>
-       </tr>
+          </tr>
         </thead>
         <tbody>
           <tr>
