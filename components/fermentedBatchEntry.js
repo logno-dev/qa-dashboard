@@ -252,7 +252,7 @@ export default function FermentedBatchEntry({ product, handleChange }) {
             <td><input type="text" value={childItem.transfer.whiteMassWeight} onChange={(e) => localChange('transfer', 'whiteMassWeight', e.target.value)}></input></td>
             <td><input type="text" value={childItem.transfer.holdTankWeightStart} onChange={(e) => localChange('transfer', 'holdTankWeightStart', e.target.value)}></input></td>
             <td><input type="text" value={childItem.transfer.holdTankWeightEnd} onChange={(e) => localChange('transfer', 'holdTankWeightEnd', e.target.value)}></input></td>
-            <td><input type="text" value={childItem.transfer.breakTimeEnd} onChange={(e) => localChange('transfer', 'breakTimeEnd', e.target.value)}></input></td>
+            <td><input type="time" value={childItem.transfer.breakTimeEnd} onChange={(e) => localChange('transfer', 'breakTimeEnd', e.target.value)}></input></td>
             <td><input type="text" value={childItem.transfer.signOff} onChange={(e) => localChange('transfer', 'signOff', e.target.value)}></input></td>
           </tr>
         </tbody>
