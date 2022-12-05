@@ -123,7 +123,7 @@ export default function BatchLot({ data }) {
             {selectedLot? (
               <>
                 <FermentedBatchEntry product={selectedLot} handleChange={updateItemFromChild} />
-                <button type="button" onClick={e => handleSave(e, selectedLot)} className="button">Save</button>
+                <button type="button" onClick={e => handleSave(e, selectedLot)} className="button m-2">Save</button>
                 <Status />
               </>
             ) :

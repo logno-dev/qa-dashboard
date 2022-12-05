@@ -11,6 +11,7 @@ export default function BatchLotSelector({ data }) {
   const [productType, setProductType] = useState('')
   const [valid, setValid] = useState(true)
   const [duplicate, setDuplicate] = useState(false)
+  const [addingLot, setAddingLot] = useState(false)
 
   const router = useRouter()
 
@@ -20,8 +21,8 @@ export default function BatchLotSelector({ data }) {
   }
 
   useEffect(() => {
-    // console.log(data)
-  }, [])
+        setAddingLot(false)
+  }, [data])
 
   async function addNewLot(e) {
     e.preventDefault()
@@ -82,18 +83,21 @@ export default function BatchLotSelector({ data }) {
                 solids: "",
                 pH: "",
                 brix: "",
+                temp: "",
                 passFail: "",
                 signOff: ""
               }
             ],
             transfer: {
-              breakTime: "",
+              breakTimeStart: "",
               pH: "",
               speed: "",
               temp: "",
               whiteMassWeight: "",
               holdTankWeightStart: "",
-              holdTankWeightEnd: ""
+              holdTankWeightEnd: "",
+              breakTimeEnd: "",
+              signOff: ""
             }
           }
       }
@@ -101,6 +105,7 @@ export default function BatchLotSelector({ data }) {
       //   method: 'POST',
       //   body: JSON.stringify(newProduct)
       // })
+      setAddingLot(true)
       try {
         await fetch('/api/addLot', {
           method: 'POST',
@@ -132,7 +137,11 @@ export default function BatchLotSelector({ data }) {
             <option value="esl">ESL</option>
             <option value="cheese">Cheese</option>
           </select>
-          <button type="button" onClick={addNewLot} className="button">+ Add new lot</button>
+          {addingLot? 
+            <button type="button" onClick={e=>e.preventDefault()} className="button-disabled">Adding lot...</button>
+            :
+            <button type="button" onClick={addNewLot} className="button">+ Add new lot</button>
+        }
           {valid ? null : <p className="text-red-700">*Please fill out all fields</p>}
           {duplicate ? <p className="text-red-700">*This lot already exists</p> : null}
         </form>

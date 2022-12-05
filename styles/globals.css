@@ -26,8 +26,12 @@ a {
  @apply  bg-green-500 text-white text-lg font-bold p-2 rounded-md hover:scale-105 hover:drop-shadow-md
 }
 
+.button-disabled {
+ @apply  bg-gray-400 text-white text-lg font-bold p-2 rounded-md 
+}
+
 table {
-  @apply w-full
+  @apply w-full 
 }
 
 thead {
@@ -40,5 +44,5 @@ th {
 
 
 td {
-  @apply px-2 border-gray-300 border-2
+  @apply px-2 border-gray-300 border-2 text-center
 }
