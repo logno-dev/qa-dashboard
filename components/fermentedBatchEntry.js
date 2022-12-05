@@ -195,7 +195,7 @@ export default function FermentedBatchEntry({ product, handleChange }) {
               <td><input type="text" value={check.pH} onChange={(e) => localChangeArray('fermQA', i, 'pH', e.target.value)}></input></td>
               <td><input type="text" value={check.brix} onChange={(e) => localChangeArray('fermQA', i, 'brix', e.target.value)}></input></td>
               <td><input type="text" value={check.temp} onChange={(e) => localChangeArray('fermQA', i, 'temp', e.target.value)}></input></td>
-              <td><select value={check.passFail} onChange={(e) => localChangeArray('fermQAe', i, 'passFail', e.target.value)}>
+              <td><select value={check.passFail} onChange={(e) => localChangeArray('fermQA', i, 'passFail', e.target.value)}>
                 <option value="">---</option>
                 <option value="pass">Pass</option>
                 <option value="fail">Fail</option>
