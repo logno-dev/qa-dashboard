@@ -1,6 +1,8 @@
 import Layout from '../../components/layout'
 import BatchLotSelector from '../../components/batchLotSelector'
 import FermentedBatchEntry from '../../components/fermentedBatchEntry'
+import InfoWidget from '../../components/infoWidget'
+import SampleWidget from '../../components/widgets/sampleWidget'
 import clientPromise from '../../lib/mongodb'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
@@ -119,8 +121,8 @@ export default function BatchLot({ data }) {
       <Layout title="Batching">
         <div className="two-column flex">
           <BatchLotSelector data={data} />
-          <div className="data-entry flex flex-col items-center flex-grow border-slate-500 border-4 p-4">
-            {selectedLot? (
+          <div className="data-entry flex flex-col items-center flex-grow p-4">
+            {selectedLot ? (
               <>
                 <FermentedBatchEntry product={selectedLot} handleChange={updateItemFromChild} />
                 <button type="button" onClick={e => handleSave(e, selectedLot)} className="button m-2">Save</button>
@@ -130,7 +132,9 @@ export default function BatchLot({ data }) {
               (<h2 className="text-3xl">Lot not found</h2>)
             }
           </div>
-          <div className="flex-grow"></div>
+          <InfoWidget>
+            <SampleWidget />
+          </InfoWidget>
         </div>
       </Layout>
     </>

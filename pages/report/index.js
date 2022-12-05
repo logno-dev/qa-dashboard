@@ -1,5 +1,5 @@
-import clientPromise from "../lib/mongodb";
-import Layout from '../components/layout'
+import clientPromise from "../../lib/mongodb";
+import Layout from '../../components/layout'
 import Link from "next/link";
 
 export async function getServerSideProps() {

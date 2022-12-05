@@ -46,3 +46,7 @@ th {
 td {
   @apply px-2 border-gray-300 border-2 text-center
 }
+
+nav > ul > li {
+  @apply text-3xl underline-offset-8 hover:underline 
+}

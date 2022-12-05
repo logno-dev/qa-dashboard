@@ -1,6 +1,8 @@
 import Layout from '../../components/layout'
 import clientPromise from '../../lib/mongodb'
 import BatchLotSelector from '../../components/batchLotSelector'
+import InfoWidget from '../../components/infoWidget';
+import SampleWidget from '../../components/widgets/sampleWidget';
 // import { useEffect, useState } from "react"
 
 export async function getServerSideProps() {
@@ -29,10 +31,12 @@ export default function Batching({ data }) {
       <Layout title="Batching">
         <div className="two-column flex">
           <BatchLotSelector data={data} />
-          <div className="data-entry flex-grow border-slate-500 border-4 p-4 flex flex-col justify-center items-center">
+          <div className="data-entry flex-grow p-4 flex flex-col justify-center items-center">
             <h1 className="text-4xl font-bold">Add or select lot</h1>
           </div>
-          <div className="flex-grow"></div>
+          <InfoWidget>
+            <SampleWidget />
+          </InfoWidget>
         </div>
       </Layout>
     </>
