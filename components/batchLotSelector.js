@@ -88,6 +88,16 @@ export default function BatchLotSelector({ data }) {
             productType,
             fermented: false,
             finalized: false,
+            batches: [
+              {
+                batchNum: 1,
+                time: "",
+                batchpH: "",
+                finishedpH: "",
+                finishedMoisture: "",
+                signOff:""
+              }
+            ]
           }
           break
         default:

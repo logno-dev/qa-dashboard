@@ -28,14 +28,14 @@ export default function CheeseBatchEntry({ product, handleChange }) {
 
   function addBatch(e) {
     e.preventDefault()
-    let emptyBatch = {
-      batchNum: (childItem.batches.length + 1),
-      solids: "",
-      pH: "",
-      brix: "",
-      passFail: "",
-      signOff: "",
-    }
+    let emptyBatch =              {
+                batchNum: (childItem.batches.length + 1),
+                time: "",
+                batchpH: "",
+                finishedpH: "",
+                finishedMoisture: "",
+                signOff:""
+              }
     let newBatchArray = [...childItem.batches]
     newBatchArray.push(emptyBatch)
     // console.log(newBatchArray)
@@ -44,28 +44,9 @@ export default function CheeseBatchEntry({ product, handleChange }) {
     })
   }
 
-  function addFermCheck(e) {
-    e.preventDefault()
-    let emptyFermCheck = {
-      time: "",
-      solids: "",
-      pH: "",
-      brix: "",
-      temp: "",
-      passFail: "",
-      signOff: ""
-    }
-    let newFermCheckArray = [...childItem.batches]
-    newBatchArray.push(emptyFermCheck)
-    console.log(newFermCheckArray)
-    setChildItem({
-      ...childItem, fermQA: newFermCheckArray
-    })
-  }
-
-  useEffect(()=>{
-  // console.log(saveCompareItem)
-  },[product])
+  useEffect(() => {
+    // console.log(saveCompareItem)
+  }, [product])
 
   useEffect(() => {
     handleChange(childItem, firstLoad)
@@ -73,11 +54,12 @@ export default function CheeseBatchEntry({ product, handleChange }) {
   }, [childItem])
 
   useEffect(() => {
-     if (!childItem || JSON.stringify(product) !== JSON.stringify(childItem)) {
-      setFirstLoad(true) }
+    if (!childItem || JSON.stringify(product) !== JSON.stringify(childItem)) {
+      setFirstLoad(true)
+    }
     if (JSON.stringify(product) !== JSON.stringify(childItem) && product.lot === childItem.lot) {
       setFirstLoad(false)
-    } 
+    }
     setChildItem(product)
   }, [product])
 
@@ -122,6 +104,48 @@ export default function CheeseBatchEntry({ product, handleChange }) {
       {/*     </tr> */}
       {/*   </tbody> */}
       {/* </table> */}
+      {/* <h3 className="text-2xl">Batch Data</h3> */}
+      <table>
+        <thead>
+          <tr>
+            <th>
+              Batch #
+            </th>
+            <th>
+              Time
+            </th>
+            <th>
+              Batch pH
+            </th>
+            <th>
+              Finished pH
+            </th>
+            <th>
+              Finished Moisture %
+            </th>
+            <th>
+              Sign Off
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          {childItem.batches.map((batch, i) => (
+            <tr key={i}>
+              <td>{batch.batchNum}</td>
+              <td><input type="time" value={batch.time} onChange={(e) => localChangeArray('batches', i, 'time', e.target.value)}></input></td>
+              <td><input type="text" value={batch.batchpH} onChange={(e) => localChangeArray('batches', i, 'batchpH', e.target.value)}></input></td>
+              <td><input type="text" value={batch.finishedpH} onChange={(e) => localChangeArray('batches', i, 'finishedpH', e.target.value)}></input></td>
+              <td><input type="text" value={batch.finishedMoisture} onChange={(e) => localChangeArray('batches', i, 'finishedMoisture', e.target.value)}></input></td>
+              <td><input type="text" value={batch.signOff} onChange={(e) => localChangeArray('batches', i, 'signOff', e.target.value)}></input></td>
+            </tr>
+          ))}
+          <tr>
+            <td colSpan={6}>
+              <button type="button" onClick={addBatch}>+Add new batch</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </>
   )
 }
