@@ -6,7 +6,7 @@ export default function Layout({ children, title}) {
   return (
     <>
       <Head>
-        <title>QA Data Entry : {title}</title>
+        <title>QA Data Entry</title>
       </Head>
       <Header />
 

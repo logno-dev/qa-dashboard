@@ -1,6 +1,8 @@
 import Layout from '../../components/layout'
 import BatchLotSelector from '../../components/batchLotSelector'
 import FermentedBatchEntry from '../../components/fermentedBatchEntry'
+import CheeseBatchEntry from '../../components/cheeseBatchEntry'
+import EslBatchEntry from '../../components/eslBatchEntry'
 import InfoWidget from '../../components/infoWidget'
 import SampleWidget from '../../components/widgets/sampleWidget'
 import clientPromise from '../../lib/mongodb'
@@ -39,11 +41,13 @@ export default function BatchLot({ data }) {
   useEffect(() => {
     setSelectedLot(data[data.findIndex(e => e.lot === id)])
     setSavedItem(data[data.findIndex(e => e.lot === id)])
+    // console.log(selectedLot)
+    // console.log(data[data.findIndex( e => e.lot === id)])
   }, [id])
 
-  useEffect(() => {
-    // console.log(savedItem)
-  }, [selectedLot])
+  // useEffect(() => {
+  //   console.log(selectedLot)
+  // }, [selectedLot])
 
 
   useEffect(() => {
@@ -89,6 +93,23 @@ export default function BatchLot({ data }) {
     }
   }
 
+  const ProductTypeDisplayCheck = ({ item }) => {
+    if (item.fermented) {
+      return (
+        <FermentedBatchEntry product={item} handleChange={updateItemFromChild} />
+      )
+    } else if (item.productType === 'cheese') {
+      return (
+        <CheeseBatchEntry product={item} handleChange={updateItemFromChild} />
+      )
+    } else {
+      return (
+        <EslBatchEntry product={item} handleChange={updateItemFromChild} />
+      )
+    }
+  }
+
+
   function updateItemFromChild(product, firstLoad) {
     setSelectedLot(product)
     if (JSON.stringify(savedItem) === JSON.stringify(product)) {
@@ -133,7 +154,19 @@ export default function BatchLot({ data }) {
           <div className="data-entry flex flex-col items-center flex-grow p-4">
             {selectedLot ? (
               <>
-                <FermentedBatchEntry product={selectedLot} handleChange={updateItemFromChild} />
+                {/* <ProductTypeDisplayCheck item={selectedLot} /> */}
+                {(selectedLot.fermented) ?
+                  <FermentedBatchEntry product={selectedLot} handleChange={updateItemFromChild} />
+                  : null
+                }
+                {(selectedLot.productType === 'esl') ?
+                  <EslBatchEntry product={selectedLot} handleChange={updateItemFromChild} />
+                  : null
+                }
+                {(selectedLot.productType === 'cheese') ?
+                  <CheeseBatchEntry product={selectedLot} handleChange={updateItemFromChild} />
+                  : null
+                }
                 <button type="button" onClick={e => handleSave(e, selectedLot)} className="button m-2">Save</button>
                 <Status />
               </>
