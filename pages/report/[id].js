@@ -16,11 +16,13 @@ export async function getServerSideProps() {
 
     const reports = await db.collection("report").find({}).sort({ dateAdded: -1 }).limit(50).toArray();
     const lots = await db.collection("batching").find({ finalized: false }).sort({ dateAdded: 1 }).toArray();
+    const finishedProducts = await db.collection("finished").find({ finalized: false }).sort({ dateAdded: 1 }).toArray();
 
     return {
       props: {
         reports: JSON.parse(JSON.stringify(reports)),
-        lots: JSON.parse(JSON.stringify(lots))
+        lots: JSON.parse(JSON.stringify(lots)),
+        finishedProducts: JSON.parse(JSON.stringify(finishedProducts))
       },
     };
   } catch (e) {
@@ -32,18 +34,23 @@ export async function getServerSideProps() {
 }
 
 
-export default function GeneratedReport({ reports, lots }) {
+export default function GeneratedReport({ reports, lots, finishedProducts }) {
 
   const router = useRouter()
   const { id } = router.query
   const [selectedReport, setSelectedReport] = useState(reports[reports.findIndex(e => e.reportId === id)])
-  const [pendingLots, setPendingLots] = useState(lots.map(e => e.lot))
+  const [pendingLots, setPendingLots] = useState([])
   const [queuedLots, setQueuedLots] = useState(new Array)
   const [confirmFinal, setConfirmFinal] = useState(false)
   const [finalizing, setFinalizing] = useState(false)
 
   useEffect(() => {
-  }, [])
+    if (selectedReport.type === 'batching') {
+      setPendingLots(lots.map(e => e.lot))
+    } else if (selectedReport.type === 'finishedProduct') {
+      setPendingLots(finishedProducts ? finishedProducts.map(e => e.lot) : [])
+    }
+  }, [selectedReport])
 
   useEffect(() => {
     setQueuedLots([]) 
@@ -126,7 +133,7 @@ export default function GeneratedReport({ reports, lots }) {
               :
               (
                 <>
-                  {pendingLots.length === 0 ? null : <p className="text-lg">Select items to add to the report:</p>}
+                  {pendingLots.length === 0 ? <p className="text-lg text-gray-500">No items available for this report</p> : <p className="text-lg">Select items to add to the report:</p>}
                   <ul className="flex flex-wrap gap-2 p-4">
                     {pendingLots.map(lot => {
                       return (
