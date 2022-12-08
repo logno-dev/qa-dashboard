@@ -55,8 +55,8 @@ export default function FermentedBatchEntry({ product, handleChange }) {
       passFail: "",
       signOff: ""
     }
-    let newFermCheckArray = [...childItem.batches]
-    newBatchArray.push(emptyFermCheck)
+    let newFermCheckArray = [...childItem.fermQA]
+    newFermCheckArray.push(emptyFermCheck)
     console.log(newFermCheckArray)
     setChildItem({
       ...childItem, fermQA: newFermCheckArray

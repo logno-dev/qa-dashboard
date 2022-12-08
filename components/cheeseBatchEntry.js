@@ -69,42 +69,7 @@ export default function CheeseBatchEntry({ product, handleChange }) {
         <h2>Product Type: <span className="text-orange-800">{childItem.productType}</span></h2>
         <h2> Lot: <span className="text-orange-800">{childItem.lot}</span></h2>
       </div>
-      {/* <h3 className="text-2xl">UHT Ops</h3> */}
-      {/* <table> */}
-      {/*   <thead> */}
-      {/*     <tr> */}
-      {/*       <th> */}
-      {/*         Ferm Tank Start Weight(lbs) */}
-      {/*       </th> */}
-      {/*       <th> */}
-      {/*         Agitation Start */}
-      {/*       </th> */}
-      {/*       <th> */}
-      {/*         Innoc Time */}
-      {/*       </th> */}
-      {/*       <th> */}
-      {/*         Innoc By */}
-      {/*       </th> */}
-      {/*       <th> */}
-      {/*         Flash Psi */}
-      {/*       </th> */}
-      {/*       <th> */}
-      {/*         Agitation End */}
-      {/*       </th> */}
-      {/*     </tr> */}
-      {/*   </thead> */}
-      {/*   <tbody> */}
-      {/*     <tr> */}
-      {/*       <td><input type="text" value={childItem.ferm.tankStart} onChange={(e) => localChange('ferm', 'tankStart', e.target.value)}></input></td> */}
-      {/*       <td><input type="time" value={childItem.ferm.agStart} onChange={(e) => localChange('ferm', 'agStart', e.target.value)}></input></td> */}
-      {/*       <td><input type="time" value={childItem.ferm.innocTime} onChange={(e) => localChange('ferm', 'innocTime', e.target.value)}></input></td> */}
-      {/*       <td><input type="text" value={childItem.ferm.innocBy} onChange={(e) => localChange('ferm', 'innocBy', e.target.value)}></input></td> */}
-      {/*       <td><input type="text" value={childItem.ferm.flash} onChange={(e) => localChange('ferm', 'flash', e.target.value)}></input></td> */}
-      {/*       <td><input type="time" value={childItem.ferm.agEnd} onChange={(e) => localChange('ferm', 'agEnd', e.target.value)}></input></td> */}
-      {/*     </tr> */}
-      {/*   </tbody> */}
-      {/* </table> */}
-      {/* <h3 className="text-2xl">Batch Data</h3> */}
+      <h3 className="text-2xl">Batch Data</h3>
       <table>
         <thead>
           <tr>

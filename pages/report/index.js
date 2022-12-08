@@ -1,5 +1,6 @@
 import clientPromise from "../../lib/mongodb";
 import Layout from '../../components/layout'
+import ReportLotSelector from "../../components/reportLotSelector";
 import Link from "next/link";
 
 export async function getServerSideProps() {
@@ -7,7 +8,7 @@ export async function getServerSideProps() {
     const client = await clientPromise;
     const db = client.db("products");
 
-    const data = await db.collection("batching").find({}).toArray();
+    const data = await db.collection("report").find({}).toArray();
 
     return {
       props: { data: JSON.parse(JSON.stringify(data)) },
@@ -25,6 +26,7 @@ export default function Home({ data }) {
     <>
       <Layout title="Home">
         <div className="flex justify-center p-12">
+          <ReportLotSelector data={data} />
           <div>
             <h1 className="text-5xl">Welcome!</h1>
             <p className="text-xl">This project is currently under construction. At this time, the batching data entry page is fully functional. Finished Product page and Reports page coming soon.</p>
