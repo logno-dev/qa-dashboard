@@ -66,6 +66,11 @@ export default function GeneratedReport({ reports, lots, finishedProducts }) {
     console.log(lot)
   }
 
+  function openPopup(){
+    let link = 'rendered/' + selectedReport.reportId
+    window.open(link, "popup", 'width=900, height=980')
+  }
+
   const FinalizeButton = () => {
     return (
       <>
@@ -130,7 +135,8 @@ export default function GeneratedReport({ reports, lots, finishedProducts }) {
                 <h2 className="text-3xl text-blue-700 font-bold p-2">Report:<span className="text-red-700">{selectedReport.reportId}</span></h2>
                 {selectedReport.finalized ? (
                   <>
-                    <Link href={'rendered/' + selectedReport.reportId} target="_blank" className="button m-4">Print Report</Link>
+                    {/* <Link href={'rendered/' + selectedReport.reportId} target="_blank" className="button m-4">Print Report</Link> */}
+                    <a href={'rendered/' + selectedReport.reportId} target="popup" className="button m-4" onClick={openPopup} >Print Report</a>
                     <ReportDisplayBlock data={selectedReport.contents} />
                   </>
                 )
