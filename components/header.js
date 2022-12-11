@@ -1,18 +1,20 @@
 import Link from "next/link";
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
+import info from '../info.json'
+import Image from "next/image";
+import logo from '../public/fp_logo_white.svg'
 
 export default function Header() {
 
   const router = useRouter()
   const [currentPath, setCurrentPath] = useState(router.pathname)
 
-
   return (
     <header className="flex justify-start items-center p-4 bg-gray-900 text-white">
       <div>
         <Link href="/" className="text-3xl">
-          Forager
+         <Image src={logo} width={logo.width/3} heigh={logo.height/3} alt="Forager Project" /> 
         </Link>
       </div>
       <nav className="flex-grow">
@@ -47,6 +49,9 @@ export default function Header() {
           </li>
         </ul>
       </nav>
+        <div>
+        v{info.version}
+        </div>
     </header>
   );
 }
