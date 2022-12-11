@@ -1,8 +1,10 @@
 import { useState, useEffect } from 'react'
+import format from 'date-fns/format'
 
 export default function CheeseBatchEntry({ product, handleChange }) {
   const [childItem, setChildItem] = useState(product)
   const [firstLoad, setFirstLoad] = useState(true)
+  const [newComment, setNewComment] = useState()
 
   function localChange(category, field, targetValue) {
     setChildItem({
@@ -41,6 +43,20 @@ export default function CheeseBatchEntry({ product, handleChange }) {
     // console.log(newBatchArray)
     setChildItem({
       ...childItem, batches: newBatchArray
+    })
+  }
+
+  function addComment() {
+    let commentObject = {
+      date: format(new Date(), 'MM-dd-yyy h:mmaa'),
+      contents: newComment
+    }
+
+    let newCommentArray = [...childItem.comments]
+    newCommentArray.push(commentObject)
+
+    setChildItem({
+      ...childItem, comments: newCommentArray
     })
   }
 
@@ -113,6 +129,17 @@ export default function CheeseBatchEntry({ product, handleChange }) {
           )}
         </tbody>
       </table>
+      <ul>
+        {childItem.comments.map((comment) => (
+          <li key={comment.date}>{comment.date} - {comment.contents}</li>
+        ))}
+      </ul>
+      {childItem.finalized ? null : (
+        <div className="flex flex-col items-center">
+          <textarea rows={4} cols={90} placeholder="comments..." value={newComment} onChange={(e) => setNewComment(e.target.value)} />
+          <button type="button" className="button m-2" onClick={addComment} >Add Comment</button>
+        </div>
+      )}
     </>
   )
 }

@@ -67,6 +67,7 @@ export default function BatchLotSelector({ data }) {
             productType,
             fermented: false,
             finalized: false,
+            comments: [],
             batches: [
               {
                 batchNum: 1,
@@ -88,6 +89,7 @@ export default function BatchLotSelector({ data }) {
             productType,
             fermented: false,
             finalized: false,
+            comments: [],
             batches: [
               {
                 batchNum: 1,
@@ -109,6 +111,7 @@ export default function BatchLotSelector({ data }) {
             productType,
             fermented: true,
             finalized: false,
+            comments:[],
             ferm: {
               tankStart: "",
               agStart: "",
