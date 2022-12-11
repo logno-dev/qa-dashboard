@@ -63,9 +63,9 @@ export default function FermentedBatchEntry({ product, handleChange }) {
     })
   }
 
-  useEffect(()=>{
-  // console.log(saveCompareItem)
-  },[product])
+  useEffect(() => {
+    // console.log(saveCompareItem)
+  }, [product])
 
   useEffect(() => {
     handleChange(childItem, firstLoad)
@@ -73,11 +73,12 @@ export default function FermentedBatchEntry({ product, handleChange }) {
   }, [childItem])
 
   useEffect(() => {
-     if (!childItem || JSON.stringify(product) !== JSON.stringify(childItem)) {
-      setFirstLoad(true) }
+    if (!childItem || JSON.stringify(product) !== JSON.stringify(childItem)) {
+      setFirstLoad(true)
+    }
     if (JSON.stringify(product) !== JSON.stringify(childItem) && product.lot === childItem.lot) {
       setFirstLoad(false)
-    } 
+    }
     setChildItem(product)
   }, [product])
 
@@ -113,12 +114,12 @@ export default function FermentedBatchEntry({ product, handleChange }) {
         </thead>
         <tbody>
           <tr>
-            <td><input type="text" value={childItem.ferm.tankStart} onChange={(e) => localChange('ferm', 'tankStart', e.target.value)}></input></td>
-            <td><input type="time" value={childItem.ferm.agStart} onChange={(e) => localChange('ferm', 'agStart', e.target.value)}></input></td>
-            <td><input type="time" value={childItem.ferm.innocTime} onChange={(e) => localChange('ferm', 'innocTime', e.target.value)}></input></td>
-            <td><input type="text" value={childItem.ferm.innocBy} onChange={(e) => localChange('ferm', 'innocBy', e.target.value)}></input></td>
-            <td><input type="text" value={childItem.ferm.flash} onChange={(e) => localChange('ferm', 'flash', e.target.value)}></input></td>
-            <td><input type="time" value={childItem.ferm.agEnd} onChange={(e) => localChange('ferm', 'agEnd', e.target.value)}></input></td>
+            <td>{childItem.finalized ? childItem.ferm.tankStart : <input type="text" value={childItem.ferm.tankStart} onChange={(e) => localChange('ferm', 'tankStart', e.target.value)}></input>}</td>
+            <td>{childItem.finalized ? childItem.ferm.agStart : <input type="time" value={childItem.ferm.agStart} onChange={(e) => localChange('ferm', 'agStart', e.target.value)}></input>}</td>
+            <td>{childItem.finalized ? childItem.ferm.innocTime : <input type="time" value={childItem.ferm.innocTime} onChange={(e) => localChange('ferm', 'innocTime', e.target.value)}></input>}</td>
+            <td>{childItem.finalized ? childItem.ferm.innocBy : <input type="text" value={childItem.ferm.innocBy} onChange={(e) => localChange('ferm', 'innocBy', e.target.value)}></input>}</td>
+            <td>{childItem.finalized ? childItem.ferm.flash : <input type="text" value={childItem.ferm.flash} onChange={(e) => localChange('ferm', 'flash', e.target.value)}></input>}</td>
+            <td>{childItem.finalized ? childItem.ferm.agEnd : <input type="time" value={childItem.ferm.agEnd} onChange={(e) => localChange('ferm', 'agEnd', e.target.value)}></input>}</td>
           </tr>
         </tbody>
       </table>
@@ -150,22 +151,24 @@ export default function FermentedBatchEntry({ product, handleChange }) {
           {childItem.batches.map((batch, i) => (
             <tr key={i}>
               <td>{batch.batchNum}</td>
-              <td><input type="text" value={batch.solids} onChange={(e) => localChangeArray('batches', i, 'solids', e.target.value)}></input></td>
-              <td><input type="text" value={batch.pH} onChange={(e) => localChangeArray('batches', i, 'pH', e.target.value)}></input></td>
-              <td><input type="text" value={batch.brix} onChange={(e) => localChangeArray('batches', i, 'brix', e.target.value)}></input></td>
-              <td><select value={batch.passFail} onChange={(e) => localChangeArray('batches', i, 'passFail', e.target.value)}>
+              <td>{childItem.finalized ? batch.solids : <input type="text" value={batch.solids} onChange={(e) => localChangeArray('batches', i, 'solids', e.target.value)}></input>}</td>
+              <td>{childItem.finalized ? batch.pH : <input type="text" value={batch.pH} onChange={(e) => localChangeArray('batches', i, 'pH', e.target.value)}></input>}</td>
+              <td>{childItem.finalized ? batch.brix : <input type="text" value={batch.brix} onChange={(e) => localChangeArray('batches', i, 'brix', e.target.value)}></input>}</td>
+              <td>{childItem.finalized ? batch.passFail : (<select value={batch.passFail} onChange={(e) => localChangeArray('batches', i, 'passFail', e.target.value)}>
                 <option value="">---</option>
                 <option value="pass">Pass</option>
                 <option value="fail">Fail</option>
-              </select></td>
-              <td><input type="text" value={batch.signOff} onChange={(e) => localChangeArray('batches', i, 'signOff', e.target.value)}></input></td>
+              </select>)}</td>
+              <td>{childItem.finalized ? batch.signOff : <input type="text" value={batch.signOff} onChange={(e) => localChangeArray('batches', i, 'signOff', e.target.value)}></input>}</td>
             </tr>
           ))}
-          <tr>
-            <td colSpan={6}>
-              <button type="button" onClick={addBatch}>+Add new batch</button>
-            </td>
-          </tr>
+          {childItem.finalized ? null : (
+            <tr>
+              <td colSpan={6}>
+                <button type="button" onClick={addBatch}>+Add new batch</button>
+              </td>
+            </tr>
+          )}
         </tbody>
       </table>
       <h3 className="text-2xl">Fermentation Checks</h3>
@@ -198,24 +201,26 @@ export default function FermentedBatchEntry({ product, handleChange }) {
         <tbody>
           {childItem.fermQA.map((check, i) => (
             <tr key={i}>
-              <td><input type="time" value={check.time} onChange={(e) => localChangeArray('fermQA', i, 'time', e.target.value)}></input></td>
-              <td><input type="text" value={check.solids} onChange={(e) => localChangeArray('fermQA', i, 'solids', e.target.value)}></input></td>
-              <td><input type="text" value={check.pH} onChange={(e) => localChangeArray('fermQA', i, 'pH', e.target.value)}></input></td>
-              <td><input type="text" value={check.brix} onChange={(e) => localChangeArray('fermQA', i, 'brix', e.target.value)}></input></td>
-              <td><input type="text" value={check.temp} onChange={(e) => localChangeArray('fermQA', i, 'temp', e.target.value)}></input></td>
-              <td><select value={check.passFail} onChange={(e) => localChangeArray('fermQA', i, 'passFail', e.target.value)}>
+              <td>{childItem.finalized ? check.time : <input type="time" value={check.time} onChange={(e) => localChangeArray('fermQA', i, 'time', e.target.value)}></input>}</td>
+              <td>{childItem.finalized ? check.solids : <input type="text" value={check.solids} onChange={(e) => localChangeArray('fermQA', i, 'solids', e.target.value)}></input>}</td>
+              <td>{childItem.finalized ? check.pH : <input type="text" value={check.pH} onChange={(e) => localChangeArray('fermQA', i, 'pH', e.target.value)}></input>}</td>
+              <td>{childItem.finalized ? check.brix : <input type="text" value={check.brix} onChange={(e) => localChangeArray('fermQA', i, 'brix', e.target.value)}></input>}</td>
+              <td>{childItem.finalized ? check.temp : <input type="text" value={check.temp} onChange={(e) => localChangeArray('fermQA', i, 'temp', e.target.value)}></input>}</td>
+              <td>{childItem.finalized ? check.passFail : (<select value={check.passFail} onChange={(e) => localChangeArray('fermQA', i, 'passFail', e.target.value)}>
                 <option value="">---</option>
                 <option value="pass">Pass</option>
                 <option value="fail">Fail</option>
-              </select></td>
-              <td><input type="text" value={check.signOff} onChange={(e) => localChangeArray('fermQA', i, 'signOff', e.target.value)}></input></td>
+              </select>)}</td>
+              <td>{childItem.finalized ? check.signOff : <input type="text" value={check.signOff} onChange={(e) => localChangeArray('fermQA', i, 'signOff', e.target.value)}></input>}</td>
             </tr>
           ))}
-          <tr>
-            <td colSpan={7}>
-              <button type="button" onClick={addFermCheck}>+Add new sample</button>
-            </td>
-          </tr>
+          {childItem.finalized ? null : (
+            <tr>
+              <td colSpan={7}>
+                <button type="button" onClick={addFermCheck}>+Add new sample</button>
+              </td>
+            </tr>
+          )}
         </tbody>
       </table>
       <h3 className="text-2xl">Fermentation Break Transfer</h3>
@@ -253,15 +258,15 @@ export default function FermentedBatchEntry({ product, handleChange }) {
         </thead>
         <tbody>
           <tr>
-            <td><input type="time" value={childItem.transfer.breakTimeStart} onChange={(e) => localChange('transfer', 'breakTimeStart', e.target.value)}></input></td>
-            <td><input type="text" size="4" value={childItem.transfer.pH} onChange={(e) => localChange('transfer', 'pH', e.target.value)}></input></td>
-            <td><input type="text" size="6" value={childItem.transfer.speed} onChange={(e) => localChange('transfer', 'speed', e.target.value)}></input></td>
-            <td><input type="text" size="6" value={childItem.transfer.temp} onChange={(e) => localChange('transfer', 'temp', e.target.value)}></input></td>
-            <td><input type="text" value={childItem.transfer.whiteMassWeight} onChange={(e) => localChange('transfer', 'whiteMassWeight', e.target.value)}></input></td>
-            <td><input type="text" value={childItem.transfer.holdTankWeightStart} onChange={(e) => localChange('transfer', 'holdTankWeightStart', e.target.value)}></input></td>
-            <td><input type="text" value={childItem.transfer.holdTankWeightEnd} onChange={(e) => localChange('transfer', 'holdTankWeightEnd', e.target.value)}></input></td>
-            <td><input type="time" value={childItem.transfer.breakTimeEnd} onChange={(e) => localChange('transfer', 'breakTimeEnd', e.target.value)}></input></td>
-            <td><input type="text" value={childItem.transfer.signOff} onChange={(e) => localChange('transfer', 'signOff', e.target.value)}></input></td>
+            <td>{childItem.finalized ? childItem.transfer.breakTimeStart : <input type="time" value={childItem.transfer.breakTimeStart} onChange={(e) => localChange('transfer', 'breakTimeStart', e.target.value)}></input>}</td>
+            <td>{childItem.finalized ? childItem.transfer.pH : <input type="text" size="4" value={childItem.transfer.pH} onChange={(e) => localChange('transfer', 'pH', e.target.value)}></input>}</td>
+            <td>{childItem.finalized ? childItem.transfer.speed : <input type="text" size="6" value={childItem.transfer.speed} onChange={(e) => localChange('transfer', 'speed', e.target.value)}></input>}</td>
+            <td>{childItem.finalized ? childItem.transfer.temp : <input type="text" size="6" value={childItem.transfer.temp} onChange={(e) => localChange('transfer', 'temp', e.target.value)}></input>}</td>
+            <td>{childItem.finalized ? childItem.transfer.whiteMassWeight : <input type="text" value={childItem.transfer.whiteMassWeight} onChange={(e) => localChange('transfer', 'whiteMassWeight', e.target.value)}></input>}</td>
+            <td>{childItem.finalized ? childItem.transfer.holdTankWeightStart : <input type="text" value={childItem.transfer.holdTankWeightStart} onChange={(e) => localChange('transfer', 'holdTankWeightStart', e.target.value)}></input>}</td>
+            <td>{childItem.finalized ? childItem.transfer.holdTankWeightEnd : <input type="text" value={childItem.transfer.holdTankWeightEnd} onChange={(e) => localChange('transfer', 'holdTankWeightEnd', e.target.value)}></input>}</td>
+            <td>{childItem.finalized ? childItem.transfer.breakTimeEnd : <input type="time" value={childItem.transfer.breakTimeEnd} onChange={(e) => localChange('transfer', 'breakTimeEnd', e.target.value)}></input>}</td>
+            <td>{childItem.finalized ? childItem.transfer.signOff : <input type="text" value={childItem.transfer.signOff} onChange={(e) => localChange('transfer', 'signOff', e.target.value)}></input>}</td>
           </tr>
         </tbody>
       </table>

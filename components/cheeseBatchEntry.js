@@ -28,14 +28,14 @@ export default function CheeseBatchEntry({ product, handleChange }) {
 
   function addBatch(e) {
     e.preventDefault()
-    let emptyBatch =              {
-                batchNum: (childItem.batches.length + 1),
-                time: "",
-                batchpH: "",
-                finishedpH: "",
-                finishedMoisture: "",
-                signOff:""
-              }
+    let emptyBatch = {
+      batchNum: (childItem.batches.length + 1),
+      time: "",
+      batchpH: "",
+      finishedpH: "",
+      finishedMoisture: "",
+      signOff: ""
+    }
     let newBatchArray = [...childItem.batches]
     newBatchArray.push(emptyBatch)
     // console.log(newBatchArray)
@@ -97,18 +97,20 @@ export default function CheeseBatchEntry({ product, handleChange }) {
           {childItem.batches.map((batch, i) => (
             <tr key={i}>
               <td>{batch.batchNum}</td>
-              <td><input type="time" value={batch.time} onChange={(e) => localChangeArray('batches', i, 'time', e.target.value)}></input></td>
-              <td><input type="text" value={batch.batchpH} onChange={(e) => localChangeArray('batches', i, 'batchpH', e.target.value)}></input></td>
-              <td><input type="text" value={batch.finishedpH} onChange={(e) => localChangeArray('batches', i, 'finishedpH', e.target.value)}></input></td>
-              <td><input type="text" value={batch.finishedMoisture} onChange={(e) => localChangeArray('batches', i, 'finishedMoisture', e.target.value)}></input></td>
-              <td><input type="text" value={batch.signOff} onChange={(e) => localChangeArray('batches', i, 'signOff', e.target.value)}></input></td>
+              <td>{childItem.finalized ? batch.time : <input type="time" value={batch.time} onChange={(e) => localChangeArray('batches', i, 'time', e.target.value)}></input>}</td>
+              <td>{childItem.finalized ? batch.batchpH : <input type="text" value={batch.batchpH} onChange={(e) => localChangeArray('batches', i, 'batchpH', e.target.value)}></input>}</td>
+              <td>{childItem.finalized ? batch.finishedpH : <input type="text" value={batch.finishedpH} onChange={(e) => localChangeArray('batches', i, 'finishedpH', e.target.value)}></input>}</td>
+              <td>{childItem.finalized ? batch.finishedMoisture : <input type="text" value={batch.finishedMoisture} onChange={(e) => localChangeArray('batches', i, 'finishedMoisture', e.target.value)}></input>}</td>
+              <td>{childItem.finalized ? batch.signOff : <input type="text" value={batch.signOff} onChange={(e) => localChangeArray('batches', i, 'signOff', e.target.value)}></input>}</td>
             </tr>
           ))}
-          <tr>
-            <td colSpan={6}>
-              <button type="button" onClick={addBatch}>+Add new batch</button>
-            </td>
-          </tr>
+          {childItem.finalized ? null : (
+            <tr>
+              <td colSpan={6}>
+                <button type="button" onClick={addBatch}>+Add new batch</button>
+              </td>
+            </tr>
+          )}
         </tbody>
       </table>
     </>

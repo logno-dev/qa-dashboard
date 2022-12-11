@@ -35,7 +35,7 @@ export default function EslBatchEntry({ product, handleChange }) {
       ...childItem, batches: newBatchArray
     })
   }
- 
+
   useEffect(() => {
     // console.log(saveCompareItem)
   }, [product])
@@ -89,23 +89,25 @@ export default function EslBatchEntry({ product, handleChange }) {
           {childItem.batches.map((batch, i) => (
             <tr key={i}>
               <td>{batch.batchNum}</td>
-              <td><input type="text" value={batch.solids} onChange={(e) => localChangeArray('batches', i, 'solids', e.target.value)}></input></td>
-              <td><input type="text" value={batch.pH} onChange={(e) => localChangeArray('batches', i, 'pH', e.target.value)}></input></td>
-              <td><input type="text" value={batch.brix} onChange={(e) => localChangeArray('batches', i, 'brix', e.target.value)}></input></td>
-              <td><select value={batch.passFail} onChange={(e) => localChangeArray('batches', i, 'passFail', e.target.value)}>
+              <td>{childItem.finalized ? batch.solids : <input type="text" value={batch.solids} onChange={(e) => localChangeArray('batches', i, 'solids', e.target.value)}></input>}</td>
+              <td>{childItem.finalized ? batch.pH : <input type="text" value={batch.pH} onChange={(e) => localChangeArray('batches', i, 'pH', e.target.value)}></input>}</td>
+              <td>{childItem.finalized ? batch.brix : <input type="text" value={batch.brix} onChange={(e) => localChangeArray('batches', i, 'brix', e.target.value)}></input>}</td>
+              <td>{childItem.finalized ? batch.passFail : (<select value={batch.passFail} onChange={(e) => localChangeArray('batches', i, 'passFail', e.target.value)}>
                 <option value="">---</option>
                 <option value="pass">Pass</option>
                 <option value="fail">Fail</option>
-              </select></td>
-              <td><input type="text" value={batch.signOff} onChange={(e) => localChangeArray('batches', i, 'signOff', e.target.value)}></input></td>
+              </select>)}</td>
+              <td>{childItem.finalized ? batch.signOff : <input type="text" value={batch.signOff} onChange={(e) => localChangeArray('batches', i, 'signOff', e.target.value)}></input>}</td>
             </tr>
           ))}
-           <tr>
-            <td colSpan={6}>
-              <button type="button" onClick={addBatch}>+Add new batch</button>
-            </td>
-          </tr>
-       </tbody>
+          {childItem.finalized ? null : (
+            <tr>
+              <td colSpan={6}>
+                <button type="button" onClick={addBatch}>+Add new batch</button>
+              </td>
+            </tr>
+          )}
+        </tbody>
       </table>
     </>
   )

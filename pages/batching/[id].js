@@ -167,8 +167,11 @@ export default function BatchLot({ data }) {
                   <CheeseBatchEntry product={selectedLot} handleChange={updateItemFromChild} />
                   : null
                 }
-                <button type="button" onClick={e => handleSave(e, selectedLot)} className="button m-2">Save</button>
-                <Status />
+                {selectedLot.finalized ? null :(<>
+                  <button type="button" onClick={e => handleSave(e, selectedLot)} className="button m-2">Save</button>
+                  <Status />
+                </>)
+              }
               </>
             ) :
               (<h2 className="text-3xl">Lot not found</h2>)
