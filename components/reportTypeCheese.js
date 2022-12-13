@@ -1,6 +1,5 @@
 
 
-
 export default function ReportTypeCheese({ data }) {
   return (
     <>
@@ -42,6 +41,9 @@ export default function ReportTypeCheese({ data }) {
         </tbody>
       </table>
 
+      {data.comments.map(comment => (
+        <p key={comment.date}>{comment.date} - {comment.contents}</p>
+      ))}
     </>
   )
 }

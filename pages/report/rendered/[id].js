@@ -1,5 +1,6 @@
 import clientPromise from "../../../lib/mongodb";
 import ReportDisplayBlock from "../../../components/reportDisplayBlock";
+import ReportFinishedDiplay from "../../../components/reportFinishedDisplay";
 import { PrinterIcon } from "@heroicons/react/24/solid/"
 import Image from "next/image";
 import logo from "../../../public/fp_logo.svg"
@@ -46,7 +47,11 @@ export default function RenderedReport({ report }) {
                 <div className="text-sm col-start-3 col-span-1 border-2 border-gray-800 p-1">SQF Reference Clause: 2.5.4.1</div>
                 <div className="text-sm col-start-3 col-span-1 border-2 border-gray-800 p-1">Revision: ##/##/#### Revision #: #</div>
               </div>
-              <ReportDisplayBlock data={report.contents} />
+              {report.type === 'batching' ? (
+                <ReportDisplayBlock data={report.contents} />
+              ) : (
+                <ReportFinishedDiplay data={report.contents} />
+              )}
               <div className="py-4 text-center">Document Review Signature:________________________________________ Date: _______________</div>
             </>
           ) :

@@ -40,6 +40,9 @@ export default function ReportTypeEsl({ data }) {
           ))}
         </tbody>
       </table>
+      {data.comments.map(comment => (
+        <p key={comment.date}>{comment.date} - {comment.contents}</p>
+      ))}
     </>
   )
 }

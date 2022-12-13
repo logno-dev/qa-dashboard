@@ -1,7 +1,7 @@
 
 
 
-export default function ReportTypeYogurt({data}) {
+export default function ReportTypeYogurt({ data }) {
   return (
     <>
       <h2 className="text-2xl font-semibold">Lot: <span className="text-red-700">{data.lot}</span> &nbsp; Mass Type: <span className="text-red-700">{data.productType}</span></h2>
@@ -121,6 +121,9 @@ export default function ReportTypeYogurt({data}) {
           ))}
         </tbody>
       </table>
+      {data.comments.map(comment => (
+        <p key={comment.date}>{comment.date} - {comment.contents}</p>
+      ))}
     </>
 
   )
