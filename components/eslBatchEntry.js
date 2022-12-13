@@ -50,11 +50,8 @@ export default function EslBatchEntry({ product, handleChange }) {
     setChildItem({
       ...childItem, comments: newCommentArray
     })
+    setNewComment("")
   }
-
-  useEffect(() => {
-    // console.log(saveCompareItem)
-  }, [product])
 
   useEffect(() => {
     handleChange(childItem, firstLoad)
@@ -69,6 +66,7 @@ export default function EslBatchEntry({ product, handleChange }) {
       setFirstLoad(false)
     }
     setChildItem(product)
+    setNewComment("")
   }, [product])
 
   return (

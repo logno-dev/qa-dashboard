@@ -27,6 +27,13 @@ export default function FinishedProductSelector({ data }) {
     setFlavor("")
   }, [productType])
 
+  useEffect(() => {
+    if (productSubType === 'sourCream') {
+      setSize('12')
+      setFlavor('sourCream')
+    }
+  }, [productSubType])
+
   function validateInput(e) {
     e.preventDefault()
 
@@ -113,7 +120,7 @@ export default function FinishedProductSelector({ data }) {
                   <select value={productSubType} onChange={e => setProductSubType(e.target.value)}>
                     <option value="">Select Sub Type</option>
                     <option value="yogurt">Yogurt</option>
-                    <option value="sourcream">Sour Cream</option>
+                    <option value="sourCream">Sour Cream</option>
                     <option value="kefir">Kefir</option>
                   </select>
 
@@ -166,55 +173,55 @@ export default function FinishedProductSelector({ data }) {
                         </>
                       ) : null}
 
-                      {productSubType === "sourcream" ? (
-                        <>
-                          <p>Size: 12oz</p>
-                          <p>Flavor: Sour Cream</p>
-                        </>
-                      ) : null}
 
-                      {productType === "kefir" ? (
+                    </>
+                  ) : null}
+
+                  {productSubType === "sourCream" ? (
+                    <>
+                      <p>Size: {size} oz</p>
+                    </>
+                  ) : null}
+
+                  {productSubType === "kefir" ? (
+                    <>
+                      <select value={size} onChange={e => setSize(e.target.value)}>
+                        <option value="">Select Size</option>
+                        <option value="28">28oz</option>
+                        <option value="12">12oz</option>
+                        <option value="8">8oz</option>
+                      </select>
+                      {size ? (
                         <>
-                          <select value={size} onChange={e => setSize(e.target.value)}>
-                            <option value="">Select Size</option>
-                            <option value="28">28oz</option>
-                            <option value="12">12oz</option>
-                            <option value="8">8oz</option>
+                          <select value={flavor} onChange={e => setFlavor(e.target.value)}>
+                            <option value="">Select Flavor</option>
+                            {size === '28' ? (
+                              <>
+                                <option value="plain">Plain</option>
+                                <option value="vanilla">Vanilla</option>
+                                <option value="strawberry">Strawberry</option>
+                                <option value="blueberry">Blueberry</option>
+                                <option value="mango">Mango</option>
+                              </>
+                            ) : null}
+                            {size === '8' ? (
+                              <>
+                                <option value="vanilla">Vanilla</option>
+                                <option value="strawberry">Strawberry</option>
+                                <option value="blueberry">Blueberry</option>
+                                <option value="mango">Mango</option>
+                              </>
+                            ) : null}
+                            {size === '12' ? (
+                              <>
+                                <option value="strawberry">Strawberry</option>
+                                <option value="blackberry">Blackberry</option>
+                                <option value="mangoPeach">Mango Peach</option>
+                              </>
+                            ) : null}
                           </select>
-                          {size ? (
-                            <>
-                              <select value={flavor} onChange={e => setFlavor(e.target.value)}>
-                                <option value="">Select Flavor</option>
-                                {size === '28' ? (
-                                  <>
-                                    <option value="plain">Plain</option>
-                                    <option value="vanilla">Vanilla</option>
-                                    <option value="strawberry">Strawberry</option>
-                                    <option value="blueberry">Blueberry</option>
-                                    <option value="mango">Mango</option>
-                                  </>
-                                ) : null}
-                                {size === '8' ? (
-                                  <>
-                                    <option value="vanilla">Vanilla</option>
-                                    <option value="strawberry">Strawberry</option>
-                                    <option value="blueberry">Blueberry</option>
-                                    <option value="mango">Mango</option>
-                                  </>
-                                ) : null}
-                                {size === '12' ? (
-                                  <>
-                                    <option value="strawberry">Strawberry</option>
-                                    <option value="blackberry">Blackberry</option>
-                                    <option value="mangoPeach">Mango Peach</option>
-                                  </>
-                                ) : null}
-                              </select>
-                            </>
-                          ) : null}
                         </>
                       ) : null}
-
                     </>
                   ) : null}
                 </>

@@ -78,11 +78,8 @@ export default function FermentedBatchEntry({ product, handleChange }) {
     setChildItem({
       ...childItem, comments: newCommentArray
     })
+    setNewComment("")
   }
-
-  useEffect(() => {
-    // console.log(saveCompareItem)
-  }, [product])
 
   useEffect(() => {
     handleChange(childItem, firstLoad)
@@ -97,6 +94,7 @@ export default function FermentedBatchEntry({ product, handleChange }) {
       setFirstLoad(false)
     }
     setChildItem(product)
+    setNewComment("")
   }, [product])
 
   return (
@@ -293,9 +291,9 @@ export default function FermentedBatchEntry({ product, handleChange }) {
         ))}
       </ul>
       {childItem.finalized ? null : (
-        <div className="flex flex-col items-center">
+        <div className="flex justify-center items-center">
           <textarea rows={4} cols={90} placeholder="comments..." value={newComment} onChange={(e) => setNewComment(e.target.value)} />
-          <button type="button" className="button m-2" onClick={addComment} >Add Comment</button>
+          <button type="button" className="button m-2" onClick={addComment} >Add<br />Comment</button>
         </div>
       )}
     </>

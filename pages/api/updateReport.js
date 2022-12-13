@@ -7,11 +7,16 @@ export default async function handler(req, res) {
     let bodyObject = req.body
     bodyObject = JSON.parse(bodyObject)
     let query = { reportId: bodyObject.reportId }
-    let myUpdate = await db.collection('report').replaceOne( query, bodyObject, { upsert: false })
-    bodyObject.contents.forEach(async item=>{
+    let myUpdate = await db.collection('report').replaceOne(query, bodyObject, { upsert: false })
+    bodyObject.contents.forEach(async (item) => {
       let collection = bodyObject.type
-      let query = {lot: item.lot}
-      let finalizedLot = await db.collection(collection).updateOne( query, { $set: {finalized: true} }, { upsert: false })
+      let query
+      if (bodyObject.type === 'batching') {
+        query = { lot: item.lot }
+      } else if (bodyObject.type === 'finishedProduct') {
+        query = { id: item.id }
+      }
+      let finalizedLot = await db.collection(collection).updateOne(query, { $set: { finalized: true } }, { upsert: false })
     })
     res.json({ message: 'ok' })
     // let bodyObject = JSON.parse(req.body)
