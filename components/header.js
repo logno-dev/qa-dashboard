@@ -1,9 +1,9 @@
 import Link from "next/link";
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
-import info from '../info.json'
 import Image from "next/image";
 import logo from '../public/fp_logo_white.svg'
+import { signOut } from 'next-auth/react'
 
 export default function Header() {
 
@@ -14,7 +14,7 @@ export default function Header() {
     <header className="flex justify-start items-center p-4 bg-gray-900 text-white">
       <div>
         <Link href="/" className="text-3xl">
-         <Image src={logo} width={logo.width/3} heigh={logo.height/3} alt="Forager Project" /> 
+          <Image src={logo} width={logo.width / 3} heigh={logo.height / 3} alt="Forager Project" />
         </Link>
       </div>
       <nav className="flex-grow">
@@ -49,9 +49,9 @@ export default function Header() {
           </li>
         </ul>
       </nav>
-        <div>
-        v{info.version}
-        </div>
+      <div>
+        <button onClick={() => signOut()}>Logout</button>
+      </div>
     </header>
   );
 }

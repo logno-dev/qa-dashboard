@@ -10,9 +10,11 @@
   },
   "dependencies": {
     "@heroicons/react": "^2.0.13",
+    "bcryptjs": "^2.4.3",
     "date-fns": "^2.29.3",
     "mongodb": "^4.11.0",
     "next": "13.0.0",
+    "next-auth": "^4.18.6",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-new-window": "^1.0.1",
