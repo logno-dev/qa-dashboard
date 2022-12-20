@@ -5,8 +5,8 @@ import { useSession } from 'next-auth/react'
 import info from '../info.json'
 import Link from 'next/link'
 
-export default function Layout({ children, title }) {
-  const { data: session, status } = useSession()
+export default function Layout({ children }) {
+  const { status } = useSession()
   return (
     <>
       {status === "authenticated" ? (
