@@ -3,6 +3,7 @@ import Header from '../components/header'
 import { useSession } from 'next-auth/react'
 // import Sidebar from './productSelect'
 import info from '../info.json'
+import Link from 'next/link'
 
 export default function Layout({ children, title }) {
   const { data: session, status } = useSession()
@@ -23,7 +24,7 @@ export default function Layout({ children, title }) {
       ) :
         <>
           <div className="flex h-screen justify-center items-center">
-            <a className="text-3xl text-white p-4 bg-blue-700 rounded-md hover:scale-110 hover:shadow-md" href="/api/auth/signin">Please sign in</a>
+            <Link className="text-3xl text-white p-4 bg-blue-700 rounded-md hover:scale-110 hover:shadow-md" href="/api/auth/signin">Please sign in</Link>
           </div>
         </>
       }
