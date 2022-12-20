@@ -56,6 +56,18 @@ export const authOptions = {
     },
     async signOut() {
       return true
+    },
+    async jwt({ token, user }) {
+      if (user) {
+        token.id = user.id;
+      }
+      return token;
+    },
+    async session({ session, token }) {
+      if (token) {
+        session.id = token.id;
+      }
+      return session;
     }
   }
 }
