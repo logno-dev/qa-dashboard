@@ -13,7 +13,7 @@ export default function Layout({ children }) {
         <>
           <Header />
           <div className="w-full h-20"></div>
-          <div className="min-h-screen relative">
+          <div className="min-h-[calc(100vh - 80px)] relative">
             <Head>
               <title>QA Data Entry</title>
             </Head>

@@ -24,12 +24,14 @@ export default function Wiki({ allArticleData }) {
     <Layout>
       <WikiWrapper>
         <Nav articles={allArticleData} />
-        <div className="max-w-3xl p-4">
-          <h1> Welcome to the QA wiki</h1><br />
-          <h2>Here you should find answers to all your questions related to Forager QA</h2><br />
-          <h3>This section is still under construction, but I will be adding articles as quickly as I can write them. Feel free to read through some of the articles listed to the left</h3>
+        <div className="flex-grow p-4 h-[calc(100vh-80px)] overflow-y-scroll">
+          <div className="mx-auto max-w-3xl">
+            <h1> Welcome to the QA wiki</h1><br />
+            <h2>Here you should find answers to all your questions related to Forager QA</h2><br />
+            <h3>This section is still under construction, but I will be adding articles as quickly as I can write them. Feel free to read through some of the articles listed to the left</h3>
+          </div>
         </div>
-        <div className="min-w-sm max-w-md">
+        <div className="min-w-sm flex-grow">
         </div>
       </WikiWrapper>
     </Layout>

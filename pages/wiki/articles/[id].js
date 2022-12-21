@@ -30,7 +30,7 @@ export default function Article({ articleData, allArticleData }) {
       <WikiWrapper>
         <Nav articles={allArticleData} />
         <ArticleView article={articleData} />
-        <div className="min-w-sm max-w-md">
+        <div className="min-w-sm flex-grow">
         </div>
       </WikiWrapper>
     </Layout>
