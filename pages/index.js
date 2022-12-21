@@ -47,7 +47,7 @@ export default function Home() {
           <ul className="list-disc [&>li]:ml-6">
             <li>Select the <Link href="/finished_product">Finished Product</Link> page and create an item based on the product that is currently in production.</li>
             <li>The form will update and promt you based on the items you select guiding you to a unique product, flavor and size.</li>
-            <li>The first items that should be filled out for a new finished product are the "enjoy by date" and the "label code". This information should be retrieved from documentation and not for the product on the line.</li>
+            <li>The first items that should be filled out for a new finished product are the &quot;enjoy by date&quot; and the &quot;label code&quot;. This information should be retrieved from documentation and not for the product on the line.</li>
           </ul>
           <p>{status === "authenticated" ? session.user.email : null}</p>
         </div>
