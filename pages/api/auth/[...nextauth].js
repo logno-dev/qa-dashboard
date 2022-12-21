@@ -2,6 +2,7 @@ import { compare } from "bcryptjs";
 import NextAuth from "next-auth/next";
 import CredentialsProvider from "next-auth/providers/credentials"
 import clientPromise from "../../../lib/mongodb";
+import bcrypt from 'bcrypt'
 
 
 export const authOptions = {
@@ -34,7 +35,7 @@ export const authOptions = {
           console.log(e)
         }
 
-        const check = await compare(credentials.password, result.password)
+        const check = await bcrypt.compare(credentials.password, result.password)
         // const user = { id: result._id, email: result.email }
 
 
