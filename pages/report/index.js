@@ -2,6 +2,8 @@ import clientPromise from "../../lib/mongodb";
 import Layout from '../../components/layout'
 import ReportLotSelector from "../../components/reportLotSelector";
 import Link from "next/link";
+import InfoWidget from "../../components/infoWidget";
+import SampleWidget from "../../components/widgets/sampleWidget";
 
 export async function getServerSideProps() {
   try {
@@ -25,12 +27,14 @@ export default function Home({ data }) {
   return (
     <>
       <Layout title="Home">
-        <div className="flex justify-center p-12">
+        <div className="flex">
           <ReportLotSelector data={data} />
-          <div>
-            <h1 className="text-5xl">Welcome!</h1>
-            <p className="text-xl">This project is currently under construction. At this time, the batching data entry page is fully functional. Finished Product page and Reports page coming soon.</p>
+          <div className="p-8 flex-grow flex flex-col items-center justify-center">
+            <h1 className="text-4xl">Add or select report</h1>
           </div>
+          <InfoWidget>
+            <SampleWidget />
+          </InfoWidget>
         </div>
       </Layout>
     </>

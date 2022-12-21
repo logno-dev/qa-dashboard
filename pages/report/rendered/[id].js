@@ -42,10 +42,10 @@ export default function RenderedReport({ report }) {
                 <div className="col-start-1 row-start-1 col-span-1 row-span-4 flex items-center justify-center p-1"><Image src={logo} width={90} height={40} /></div>
                 <div className="text-lg text-center border-2 border-gray-800 col-start-2 col-span-1 row-start-1 row-span-2 w-96 py-1 px-4">Title: <span className="text-red-800">Lab Results Report</span> Type: <span className="text-red-800">{report.type}</span><br />Report:<span className="text-red-800 font-semibold">{report.reportId}</span></div>
                 <div className="text-center leading-4 border-2 border-gray-800 col-start-2 col-span-1 row-start-3 row-span-2 w-96 py-1 px-4">Proprietary and Confidential Business Information<br />Internal Forager Project, Indio Use Only</div>
-                <div className="text-sm col-start-3 col-span-1 border-2 border-gray-800 p-1">Effective date:##/##/####</div>
-                <div className="text-sm col-start-3 col-span-1 border-2 border-gray-800 p-1">Document #: QA-FORM-###</div>
+                <div className="text-sm col-start-3 col-span-1 border-2 border-gray-800 p-1">Effective date:12/21/2022</div>
+                <div className="text-sm col-start-3 col-span-1 border-2 border-gray-800 p-1">Document #: QA-FORM-500</div>
                 <div className="text-sm col-start-3 col-span-1 border-2 border-gray-800 p-1">SQF Reference Clause: 2.5.4.1</div>
-                <div className="text-sm col-start-3 col-span-1 border-2 border-gray-800 p-1">Revision: ##/##/#### Revision #: #</div>
+                <div className="text-sm col-start-3 col-span-1 border-2 border-gray-800 p-1">Revision: New Doc Revision #: n/a</div>
               </div>
               {report.type === 'batching' ? (
                 <ReportDisplayBlock data={report.contents} />

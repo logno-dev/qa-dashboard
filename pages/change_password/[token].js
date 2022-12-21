@@ -35,7 +35,7 @@ export default function ChangePassword({ data }) {
   const [success, setSuccess] = useState(false)
 
   function validation() {
-    if (password && password.length > 6 && password === confirmPassword) {
+    if (password && password.length > 5 && password === confirmPassword) {
       setValid(true)
     } else {
       setValid(false)
@@ -65,7 +65,7 @@ export default function ChangePassword({ data }) {
   }
 
   return (
-    <div className="flex justify-center items-center min-h-screen">
+    <div className="flex justify-center items-center min-h-screen bg-blue-900">
       {success ? (
         <>
           <p className="text-3xl font-bold">Password changed successfully</p>
@@ -75,17 +75,19 @@ export default function ChangePassword({ data }) {
         <>
 
           {email ? (
-            <form className="p-4 rounded-lg shadow-lg flex flex-col gap-2" >
+            <form className="p-8 rounded-xl shadow-lg flex flex-col gap-2 bg-white" >
+              <h2>Please set a new password</h2>
+              <h4 className="text-gray-500">Passwords must be at least 6 characters long</h4>
               <label>Email:</label>
-              <p>{email}</p>
+              <p className="text-lime-700">{email}</p>
               <label htmlFor="password">New Password:</label>
-              <input type="password" id="password" value={password} onChange={e => setPassword(e.target.value)} />
+              <input className="p-2 rounded-md bg-gray-200" type="password" id="password" value={password} onChange={e => setPassword(e.target.value)} />
               <label htmlFor="confirmPassword">Confirm Password:</label>
-              <input type="password" id="confirmPassword" value={confirmPassword} onChange={e => setConfirmPassword(e.target.value)} />
+              <input className="p-2 rounded-md bg-gray-200" type="password" id="confirmPassword" value={confirmPassword} onChange={e => setConfirmPassword(e.target.value)} />
               {valid ? (
                 <button type="button" className="button" onClick={e => handleSubmit(e)}>Submit</button>
               ) : (
-                <p className="button-disabled">Submit</p>
+                <button type="button" className="button-disabled hover:cursor-default" onClick={null}>Submit</button>
               )}
             </form>
           ) :
