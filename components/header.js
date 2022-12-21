@@ -47,10 +47,17 @@ export default function Header() {
               <Link href="/report">Reports</Link>
             }
           </li>
+          <li>
+            {(currentPath.includes('wiki')) ?
+              <Link href="/wiki" className="underline">Wiki</Link>
+              :
+              <Link href="/wiki">Wiki</Link>
+            }
+          </li>
         </ul>
       </nav>
       <div>
-        <button onClick={() => signOut()}>Logout</button>
+        <button className="font-semibold py-2 px-4 bg-gray-700 rounded-3xl hover:text-gray-900 hover:bg-gray-50" onClick={() => signOut()}>Logout</button>
       </div>
     </header>
   );
