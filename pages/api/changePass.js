@@ -14,6 +14,6 @@ export default async function handler(req, res) {
       const updatePassword = { $set: { password: hash } }
       let update = users.updateOne(query, updatePassword, { upsert: false })
     })
-    res.json({ message: ok })
+    res.json()
   }
 }

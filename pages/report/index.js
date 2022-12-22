@@ -10,7 +10,7 @@ export async function getServerSideProps() {
     const client = await clientPromise;
     const db = client.db("products");
 
-    const data = await db.collection("report").find({}).toArray();
+    const data = await db.collection("report").find({}).sort({ dateAdded: -1 }).limit(50).toArray();
 
     return {
       props: { data: JSON.parse(JSON.stringify(data)) },

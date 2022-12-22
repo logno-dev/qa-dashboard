@@ -39,6 +39,7 @@ export default function ReportLotSelector({ data }) {
         reportId: newReportId,
         type: reportType,
         finalized: false,
+        dateAdded: new Date(),
         contents: []
       }
       setAddingReport(true)
