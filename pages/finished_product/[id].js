@@ -132,7 +132,7 @@ export default function BatchLot({ data }) {
       <Layout title="Batching">
         <div className="two-column flex">
           <FinishedProductSelector data={data} />
-          <div className="data-entry flex flex-col items-center flex-grow p-4">
+          <div className="body-wrapper overflow-y-scroll data-entry flex flex-col items-center flex-grow p-4">
             {selectedProd ? (
               <>
                 <FinishedProdEntry product={selectedProd} handleChange={updateItemFromChild} />

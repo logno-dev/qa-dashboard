@@ -106,7 +106,7 @@ export default function FinishedProductSelector({ data }) {
 
   return (
     <>
-      <div className="item-selector min-w-[20rem] p-4">
+      <div className="body-wrapper overflow-y-scroll item-selector min-w-[20rem] p-4">
         <form className="flex flex-col gap-2  border-4 border-green-700 rounded-md p-2" onChange={resetErrors}>
           <select value={productType} onChange={(e) => setProductType(e.target.value)} >
             <option value="" >Select Product Type</option>

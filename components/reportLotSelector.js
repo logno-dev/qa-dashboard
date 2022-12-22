@@ -15,9 +15,9 @@ export default function ReportLotSelector({ data }) {
   const [reportType, setReportType] = useState('')
   const [reportDate, setReportDate] = useState(format(new Date(), 'yyy-MM-dd'))
 
-  useEffect(()=>{
+  useEffect(() => {
     // setReportDate()
-  },[])
+  }, [])
 
   function resetErrors() {
     setValid(true)
@@ -62,15 +62,15 @@ export default function ReportLotSelector({ data }) {
 
   return (
     <>
-      <div className="item-selector min-w-[20rem] p-4">
+      <div className="body-wrapper overflow-y-scroll item-selector min-w-[20rem] p-4">
         <form className="flex flex-col gap-2  border-4 border-green-700 rounded-md p-2" onChange={resetErrors}>
-          <input type="date" value={reportDate} onChange={e=>setReportDate(e.target.value)} />
-          <select value={reportType} onChange={e=>setReportType(e.target.value)} >
-          <option value="">-Select Report Type-</option>
-          <option value="batching">Batching</option>
-          <option value="finishedProduct">Finished Product</option>
+          <input type="date" value={reportDate} onChange={e => setReportDate(e.target.value)} />
+          <select value={reportType} onChange={e => setReportType(e.target.value)} >
+            <option value="">-Select Report Type-</option>
+            <option value="batching">Batching</option>
+            <option value="finishedProduct">Finished Product</option>
           </select>
-          {addingReport?
+          {addingReport ?
             <button type="button" className="button-disabled">Adding Report...</button>
             :
             <button type="button" className="button" onClick={addReport} >Add Report</button>

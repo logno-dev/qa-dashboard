@@ -3,6 +3,8 @@ import Layout from "../../../components/layout"
 import WikiWrapper from "../../../components/wiki/wikiWrapper"
 import Nav from "../../../components/wiki/nav"
 import ArticleView from "../../../components/wiki/articleView"
+import InfoWidget from "../../../components/infoWidget"
+import SampleWidget from "../../../components/widgets/sampleWidget"
 
 export async function getStaticProps({ params }) {
   const articleData = await getArticleData(params.id)
@@ -30,9 +32,9 @@ export default function Article({ articleData, allArticleData }) {
       <WikiWrapper>
         <Nav articles={allArticleData} />
         <ArticleView article={articleData} />
-        <div className="min-w-sm flex-grow">
-        </div>
-      </WikiWrapper>
+        <InfoWidget>
+          <SampleWidget />
+        </InfoWidget>     </WikiWrapper>
     </Layout>
 
   )

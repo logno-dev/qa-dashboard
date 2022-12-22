@@ -11,7 +11,7 @@ body {
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
   background-color: #f5f5f5;
   color: #101010;
-  min-height: 100%;
+  min-height: 100vh;
   overflow-y: overlay;
 }
 
@@ -20,7 +20,11 @@ body {
 }
 
 #__next {
-  min-height: 100%;
+  min-height: 100vh;
+}
+
+.body-wrapper {
+  height: calc(100vh - 80px);
 }
 
 ::-webkit-scrollbar {
@@ -32,12 +36,12 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #888;
+  background: #11182755;
   border-radius: 5px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #555;
+  background: #11182799;
 }
 
 a {

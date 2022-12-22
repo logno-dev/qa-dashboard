@@ -29,7 +29,7 @@ export default function Home({ data }) {
       <Layout title="Home">
         <div className="flex">
           <ReportLotSelector data={data} />
-          <div className="p-8 flex-grow flex flex-col items-center justify-center">
+          <div className="body-wrapper overflow-y-scroll p-4 flex-grow flex flex-col items-center justify-center">
             <h1 className="text-4xl">Add or select report</h1>
           </div>
           <InfoWidget>

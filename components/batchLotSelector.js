@@ -97,7 +97,7 @@ export default function BatchLotSelector({ data }) {
                 batchpH: "",
                 finishedpH: "",
                 finishedMoisture: "",
-                signOff:""
+                signOff: ""
               }
             ]
           }
@@ -111,7 +111,7 @@ export default function BatchLotSelector({ data }) {
             productType,
             fermented: true,
             finalized: false,
-            comments:[],
+            comments: [],
             ferm: {
               tankStart: "",
               agStart: "",
@@ -175,7 +175,7 @@ export default function BatchLotSelector({ data }) {
 
   return (
     <>
-      <div className="item-selector min-w-[20rem] p-4">
+      <div className="body-wrapper overflow-y-scroll item-selector min-w-[20rem] p-4">
         <form className="flex flex-col gap-2  border-4 border-green-700 rounded-md p-2" onChange={resetErrors}>
           <select value={productType} onChange={(e) => setProductType(e.target.value)}>
             <option value="">Select product type</option>
@@ -221,7 +221,7 @@ export default function BatchLotSelector({ data }) {
         </form>
         <ul className="p-2">
           {data.map((item) => (
-            <li key={item._id} className="p-2"><Link href={`/batching/${item.lot}`} className={item.finalized? "bg-gray-200 p-2 rounded-md hover:bg-gray-300" : "bg-blue-200 p-2 rounded-md hover:bg-blue-300"} >{item.lot}-{item.productType}</Link></li>
+            <li key={item._id} className="p-2"><Link href={`/batching/${item.lot}`} className={item.finalized ? "bg-gray-200 p-2 rounded-md hover:bg-gray-300" : "bg-blue-200 p-2 rounded-md hover:bg-blue-300"} >{item.lot}-{item.productType}</Link></li>
           ))}
         </ul>
       </div>

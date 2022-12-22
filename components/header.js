@@ -3,23 +3,29 @@ import { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
 import Image from "next/image";
 import logo from '../public/fp_logo_white.svg'
-import { signOut } from 'next-auth/react'
+import { signOut, useSession } from 'next-auth/react'
+
 
 export default function Header() {
 
   const router = useRouter()
   const currentPath = router.pathname
+  const { data: session, status } = useSession()
 
   return (
     <div className="fixed top-0 w-full z-10">
-      <header className="flex justify-start items-center p-4 bg-gray-900 text-white ">
-        <div>
+      <header className="grid grid-rows-1 items-center p-4 bg-gray-900 text-white h-20">
+        <div className="justify-self-start row-start-1 z-20">
           <Link href="/" className="text-3xl">
             <Image src={logo} width={logo.width / 3} heigh={logo.height / 3} alt="Forager Project" />
           </Link>
         </div>
-        <nav className="flex-grow">
-          <ul className="flex gap-4 justify-center">
+        <div className="justify-self-end row-start-1 z-20">
+          <span className="font-semibold">Signed in as</span> {session.user.email}
+          <button className="font-semibold mx-2 py-2 px-4 bg-gray-700 rounded-3xl hover:text-gray-900 hover:bg-gray-50" onClick={() => signOut()}>Logout</button>
+        </div>
+        <nav className="fixed top-5 left-0 right-0 w-full flex justify-center">
+          <ul className="flex gap-4 justify-center [&>li]:bg-gray-900">
             <li>
               {(currentPath === '/') ?
                 <Link href="/" className="underline">Dashboard</Link>
@@ -57,9 +63,6 @@ export default function Header() {
             </li>
           </ul>
         </nav>
-        <div>
-          <button className="font-semibold py-2 px-4 bg-gray-700 rounded-3xl hover:text-gray-900 hover:bg-gray-50" onClick={() => signOut()}>Logout</button>
-        </div>
       </header>
     </div>
   );

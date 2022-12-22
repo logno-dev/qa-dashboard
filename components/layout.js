@@ -13,7 +13,7 @@ export default function Layout({ children }) {
         <>
           <Header />
           <div className="w-full h-20"></div>
-          <div className="min-h-[calc(100vh - 80px)] relative">
+          <div className="body-wrapper relative overflow-y-scroll">
             <Head>
               <title>QA Data Entry</title>
             </Head>
@@ -21,7 +21,7 @@ export default function Layout({ children }) {
             <div className="flex flex-col justify-center items-stretch">
               {children}
             </div>
-            <div className="absolute bottom-0 right-0 p-4">v{info.version}</div>
+            <div className="fixed bottom-0 right-0 px-4 py-2 m-4 bg-gray-700 rounded-3xl shadow-md shadow-slate-500 text-gray-100">v{info.version}</div>
           </div>
         </>
       ) :

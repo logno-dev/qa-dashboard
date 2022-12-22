@@ -29,8 +29,8 @@ export default function Home({ data }) {
       <Layout title="Batching">
         <div className="two-column flex">
           <FinishedProductSelector data={data} />
-          <div className="data-entry flex-grow p-4 flex flex-col justify-center items-center">
-            <h1 className="text-4xl font-bold">Add or select lot</h1>
+          <div className="body-wrapper overflow-y-scroll data-entry flex-grow p-4 flex flex-col justify-center items-center">
+            <h1 className="text-4xl font-bold">Add or select product</h1>
           </div>
           <InfoWidget>
             <SampleWidget />

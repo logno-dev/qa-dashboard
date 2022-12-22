@@ -151,7 +151,7 @@ export default function BatchLot({ data }) {
       <Layout title="Batching">
         <div className="two-column flex">
           <BatchLotSelector data={data} />
-          <div className="data-entry flex flex-col items-center flex-grow p-4">
+          <div className="body-wrapper overflow-y-scroll data-entry flex flex-col items-center flex-grow p-4">
             {selectedLot ? (
               <>
                 {/* <ProductTypeDisplayCheck item={selectedLot} /> */}
@@ -167,11 +167,11 @@ export default function BatchLot({ data }) {
                   <CheeseBatchEntry product={selectedLot} handleChange={updateItemFromChild} />
                   : null
                 }
-                {selectedLot.finalized ? null :(<>
+                {selectedLot.finalized ? null : (<>
                   <button type="button" onClick={e => handleSave(e, selectedLot)} className="button m-2">Save</button>
                   <Status />
                 </>)
-              }
+                }
               </>
             ) :
               (<h2 className="text-3xl">Lot not found</h2>)

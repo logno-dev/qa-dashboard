@@ -131,7 +131,7 @@ export default function GeneratedReport({ reports, lots, finishedProducts }) {
       <Layout title="Batching">
         <div className="two-column flex">
           <ReportLotSelector data={reports} />
-          <div className="data-entry flex flex-col items-center flex-grow p-4">
+          <div className="body-wrapper overflow-y-scroll data-entry flex flex-col items-center flex-grow p-4">
             {(id && !selectedReport) ? (
               <h2 className="text-2xl">Report not found</h2>
             )
@@ -140,7 +140,6 @@ export default function GeneratedReport({ reports, lots, finishedProducts }) {
                 <h2 className="text-3xl text-blue-700 font-bold p-2">Report:<span className="text-red-700">{selectedReport.reportId}</span></h2>
                 {selectedReport.finalized ? (
                   <>
-                    {/* <Link href={'rendered/' + selectedReport.reportId} target="_blank" className="button m-4">Print Report</Link> */}
                     <a href={'rendered/' + selectedReport.reportId} target="popup" className="button m-4" onClick={openPopup} >Print Report</a>
                     {selectedReport.type === 'batching' ? (
                       <ReportDisplayBlock data={selectedReport.contents} />
