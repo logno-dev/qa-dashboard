@@ -26,7 +26,7 @@ export default function Wiki({ allArticleData }) {
     <Layout>
       <WikiWrapper>
         <Nav articles={allArticleData} />
-        <div className="flex-grow p-4 h-[calc(100vh-80px)] overflow-y-scroll">
+        <div className="flex-grow p-4 body-wrapper overflow-y-scroll">
           <div className="mx-auto max-w-3xl">
             <h1> Welcome to the QA wiki</h1><br />
             <h2>Here you should find answers to all your questions related to Forager QA</h2><br />

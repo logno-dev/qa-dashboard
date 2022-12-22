@@ -109,6 +109,11 @@ h3 {
   font-size: 1.15em;
 }
 
+.markdown > * {
+  line-height: 1.8em;
+  padding-block: 0.8em;
+}
+
 .markdown > ul,
 .markdown > ul > li > ul > li > ul {
   list-style: disc;
@@ -137,7 +142,33 @@ h3 {
   margin: 1em;
 }
 
+.markdown blockquote {
+  background-color: #e8e8e8;
+  border-radius: 10px;
+    padding: 1em;
+  margin: 2em;
+  font-style: italic;
+  color: #232323;
+}
+
+.markdown h4 > strong {
+  color: red;
+}
+
 input[type=text] {
   width: 100%;
   text-align: center;
 }
+
+input[type=text].search {
+  width: 5em;
+  text-align: center;
+  transition: 0.3s all ease-in-out
+}
+
+input[type=text].search:focus {
+  width: 10em;
+  text-align:center;
+  /* background-color: black; */
+}
+
