@@ -9,7 +9,7 @@ export default function Nav({ articles }) {
     let tempArray
     if (query.length !== 0) {
       setFilteredArticles(articles.filter(article => {
-        return article.title.toLowerCase().includes(query.toLowerCase())
+        return article.title.toLowerCase().includes(query.toLowerCase()) || article.meta.toLowerCase().replace(',', '').replace(' ', '').includes(query.toLowerCase())
       }))
     } else {
       setFilteredArticles(articles)

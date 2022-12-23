@@ -1,7 +1,13 @@
 ---
 title: 'Bostwick Test'
 date: '12-22-2022'
+author: 'Logan Bunch'
+meta: 'viscosity, consistency, Consistometer, cm, 30s, sample, measure, quality'
 ---
+### Contents
+- [Purpose](#purpose)
+- [Terms/Definitions](#termsdefinitions)
+- [Procedure](#procedure)
 
 ## Purpose:
 The purpose of Bostwick testing is to quantitatively measure the set (consistency) of starch based spoon-able products.

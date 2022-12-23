@@ -1,10 +1,9 @@
 ---
-title: 'Brookfield Test'
-date: '12-22-2022'
+title: 'Title'
+date: 'mm-dd-yyyy'
 author: 'Logan Bunch'
-meta: 'viscosity'
+meta: 'key, words'
 ---
-
 # Heading
 **Bold**
 *italic*
@@ -30,8 +29,6 @@ meta: 'viscosity'
 [Citations](#citations)
 
 ## Purpose
-The purpose of the Brookfield viscometer is to test the viscosity of 
-
 
 ## Terms/Definitions
 

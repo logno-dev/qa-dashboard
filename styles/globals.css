@@ -111,7 +111,14 @@ h3 {
 
 .markdown > * {
   line-height: 1.8em;
-  padding-block: 0.8em;
+  padding-block: 0.1em;
+}
+
+.markdown > h1,
+.markdown > h2,
+.markdown > h3,
+.makrdown > h4 {
+  padding-top: 1em;
 }
 
 .markdown > ul,
@@ -151,6 +158,9 @@ h3 {
   color: #232323;
 }
 
+.markdown h1 > strong, 
+.markdown h2 > strong, 
+.markdown h3 > strong, 
 .markdown h4 > strong {
   color: red;
 }

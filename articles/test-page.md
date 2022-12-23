@@ -1,6 +1,8 @@
 ---
 title: 'Wiki Test Page'
 date: '12-20-2022'
+author: 'Logan Bunch'
+meta: ''
 ---
 
 # Test Header
