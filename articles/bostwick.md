@@ -9,10 +9,10 @@ meta: 'viscosity, consistency, Consistometer, cm, 30s, sample, measure, quality'
 - [Terms/Definitions](#termsdefinitions)
 - [Procedure](#procedure)
 
-## Purpose:
+## Purpose
 The purpose of Bostwick testing is to quantitatively measure the set (consistency) of starch based spoon-able products.
 
-## Terms/Definitions:
+## Terms/Definitions
 
 **Bostwick (or Bostwick Consistometer):** The Bostwick is the physical device or tool used to measure the consistency, viscosity or flow of a sample by measuring the distance the material flows under its own weight in a designated period of time (commonly 30 seconds).
 
@@ -20,9 +20,9 @@ The purpose of Bostwick testing is to quantitatively measure the set (consistenc
 
 ***
 
-## Procedure:
+## Procedure
 
-### Prep:
+### Prep
 Samples should only be tested if they have been allowed to set for a **minimum of 2 days**. Samples should be between 36&deg;F and 40&deg;F.
 #### **DO NOT SHAKE OR STIR THE PRODUCT**
 > Much of the structure of our product is based on a matrix formed by activated starch molecules. The molecules pull water inside forming a balloon and then stick to one another creating a semi-organized and semi-rigid &quot;brick-wall&quot; arrangement which lends to the set and consistency of the product. At lower temperatures (below ~60&deg;F), if this structure is disrupted or *sheared* the &quot;balloons&quot; pop and release that water destroying the &quot;brick-wall&quot; and consistency of the product. Stirring or shaking the product will significantly increase our Bostwick reading and will inaccurately represent the quality of our product.
@@ -46,4 +46,8 @@ Ready a stopwatch or a 30 second timer. Simultaneously start the clock and relea
 ### Step 5
 Observe the position of the product on the device exactly at the 30 second mark. Record this value as cm/30s on the appropriate form.
 
+### Other Resources
+- [Bostwick Consistometer Instruction Manual](https://d163axztg8am2h.cloudfront.net/static/doc/64/af/7b689a0ecec334c191e9d6439d40.pdf)
+
 *see also:* [Brookfield Test](/wiki/articles/brookfield)
+
