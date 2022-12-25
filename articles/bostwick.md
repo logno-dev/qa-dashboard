@@ -46,6 +46,8 @@ Ready a stopwatch or a 30 second timer. Simultaneously start the clock and relea
 ### Step 5
 Observe the position of the product on the device exactly at the 30 second mark. Record this value as cm/30s on the appropriate form.
 
+***
+
 ### Other Resources
 - [Bostwick Consistometer Instruction Manual](https://d163axztg8am2h.cloudfront.net/static/doc/64/af/7b689a0ecec334c191e9d6439d40.pdf)
 

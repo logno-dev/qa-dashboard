@@ -63,6 +63,14 @@ export default function FinishedProductSelector({ data }) {
       enjoyBy: "",
       label: "",
       comments: [],
+      shelfLife: {
+        dateChecked: "",
+        pH: "",
+        seperation: "",
+        taste: "",
+        smell: "",
+        appearance: ""
+      },
       samples: [
         {
           BME: "",
