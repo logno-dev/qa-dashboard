@@ -33,7 +33,6 @@ export default function CheeseBatchEntry({ product, handleChange }) {
     let emptyBatch = {
       batchNum: (childItem.batches.length + 1),
       time: "",
-      batchpH: "",
       finishedpH: "",
       finishedMoisture: "",
       signOff: ""
@@ -94,9 +93,6 @@ export default function CheeseBatchEntry({ product, handleChange }) {
               Time
             </th>
             <th>
-              Batch pH
-            </th>
-            <th>
               Finished pH
             </th>
             <th>
@@ -112,7 +108,6 @@ export default function CheeseBatchEntry({ product, handleChange }) {
             <tr key={i}>
               <td>{batch.batchNum}</td>
               <td>{childItem.finalized ? batch.time : <input type="time" value={batch.time} onChange={(e) => localChangeArray('batches', i, 'time', e.target.value)}></input>}</td>
-              <td>{childItem.finalized ? batch.batchpH : <input type="text" value={batch.batchpH} onChange={(e) => localChangeArray('batches', i, 'batchpH', e.target.value)}></input>}</td>
               <td>{childItem.finalized ? batch.finishedpH : <input type="text" value={batch.finishedpH} onChange={(e) => localChangeArray('batches', i, 'finishedpH', e.target.value)}></input>}</td>
               <td>{childItem.finalized ? batch.finishedMoisture : <input type="text" value={batch.finishedMoisture} onChange={(e) => localChangeArray('batches', i, 'finishedMoisture', e.target.value)}></input>}</td>
               <td>{childItem.finalized ? batch.signOff : <input type="text" value={batch.signOff} onChange={(e) => localChangeArray('batches', i, 'signOff', e.target.value)}></input>}</td>

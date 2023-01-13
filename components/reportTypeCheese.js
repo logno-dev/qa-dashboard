@@ -14,9 +14,6 @@ export default function ReportTypeCheese({ data }) {
               Time
             </th>
             <th>
-              Batch pH
-            </th>
-            <th>
               Finished pH
             </th>
             <th>
@@ -32,7 +29,6 @@ export default function ReportTypeCheese({ data }) {
             <tr key={i}>
               <td>{batch.batchNum}</td>
               <td>{batch.time}</td>
-              <td>{batch.batchpH}</td>
               <td>{batch.finishedpH}</td>
               <td>{batch.finishedMoisture}</td>
               <td>{batch.signOff}</td>

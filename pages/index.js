@@ -49,7 +49,6 @@ export default function Home() {
             <li>The form will update and promt you based on the items you select guiding you to a unique product, flavor and size.</li>
             <li>The first items that should be filled out for a new finished product are the &quot;enjoy by date&quot; and the &quot;label code&quot;. This information should be retrieved from documentation and not for the product on the line.</li>
           </ul>
-          <p>{status === "authenticated" ? session.user.email : null}</p>
         </div>
       </div>
     </Layout>

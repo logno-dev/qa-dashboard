@@ -94,7 +94,6 @@ export default function BatchLotSelector({ data }) {
               {
                 batchNum: 1,
                 time: "",
-                batchpH: "",
                 finishedpH: "",
                 finishedMoisture: "",
                 signOff: ""
@@ -122,7 +121,7 @@ export default function BatchLotSelector({ data }) {
             },
             batches: [
               {
-                batchNum: 1,
+                batchNum: "",
                 solids: "",
                 pH: "",
                 brix: "",

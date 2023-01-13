@@ -32,7 +32,7 @@ export default function FermentedBatchEntry({ product, handleChange }) {
   function addBatch(e) {
     e.preventDefault()
     let emptyBatch = {
-      batchNum: (childItem.batches.length + 1),
+      batchNum: "",
       solids: "",
       pH: "",
       brix: "",
@@ -165,7 +165,7 @@ export default function FermentedBatchEntry({ product, handleChange }) {
         <tbody>
           {childItem.batches.map((batch, i) => (
             <tr key={i}>
-              <td>{batch.batchNum}</td>
+              <td>{childItem.finalized ? batch.batchNum : <input type="text" value={batch.batchNum} onChange={(e) => localChangeArray('batches', i, 'batchNum', e.target.value)}></input>}</td>
               <td>{childItem.finalized ? batch.solids : <input type="text" value={batch.solids} onChange={(e) => localChangeArray('batches', i, 'solids', e.target.value)}></input>}</td>
               <td>{childItem.finalized ? batch.pH : <input type="text" value={batch.pH} onChange={(e) => localChangeArray('batches', i, 'pH', e.target.value)}></input>}</td>
               <td>{childItem.finalized ? batch.brix : <input type="text" value={batch.brix} onChange={(e) => localChangeArray('batches', i, 'brix', e.target.value)}></input>}</td>

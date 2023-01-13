@@ -69,10 +69,14 @@ export default function FinishedProductSelector({ data }) {
         seperation: "",
         taste: "",
         smell: "",
-        appearance: ""
+        appearance: "",
+        spoil: "",
+        passFail: "",
+        signOff: ""
       },
       samples: [
         {
+          fermCircuit: "",
           BME: "",
           enjoyBy: "",
           time: "",
@@ -80,7 +84,8 @@ export default function FinishedProductSelector({ data }) {
           solids: "",
           pH: "",
           brix: "",
-          viscosity: "",
+          viscosityDayOne: "",
+          viscosityFinal: "",
           label: "",
           passFail: "",
           signOff: "",

@@ -34,7 +34,10 @@ export default function ReportFinishedDiplay({ data }) {
                   Brix
                 </th>
                 <th>
-                  Viscosity
+                  Viscosity Day 1
+                </th>
+                <th>
+                  Viscosity Final
                 </th>
                 <th>
                   Pass/Fail
@@ -55,7 +58,8 @@ export default function ReportFinishedDiplay({ data }) {
                   <td>{sample.solids}</td>
                   <td>{sample.pH}</td>
                   <td>{sample.brix}</td>
-                  <td>{sample.Viscosity}</td>
+                  <td>{sample.ViscosityDayOne}</td>
+                  <td>{sample.ViscosityFinal}</td>
                   <td>{sample.passFail}</td>
                   <td>{sample.signOff}</td>
                 </tr>

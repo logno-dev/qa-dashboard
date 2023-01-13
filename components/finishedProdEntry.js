@@ -31,6 +31,7 @@ export default function FinishedProdEntry({ product, handleChange }) {
   function addSample(e) {
     e.preventDefault()
     let emptysample = {
+      fermCircuit: "",
       BME: "",
       enjoyBy: "",
       time: "",
@@ -38,7 +39,8 @@ export default function FinishedProdEntry({ product, handleChange }) {
       solids: "",
       pH: "",
       brix: "",
-      viscosity: "",
+      viscosityDayOne: "",
+      viscosityFinal: "",
       label: "",
       passFail: "",
       signOff: "",
@@ -98,6 +100,9 @@ export default function FinishedProdEntry({ product, handleChange }) {
         <thead>
           <tr>
             <th>
+              Ferm Circuit
+            </th>
+            <th>
               BME
             </th>
             <th>
@@ -122,7 +127,10 @@ export default function FinishedProdEntry({ product, handleChange }) {
               Brix
             </th>
             <th>
-              Viscosity
+              Viscosity Day 1
+            </th>
+            <th>
+              Viscosity Final
             </th>
             <th>
               Pass/Fail
@@ -135,6 +143,13 @@ export default function FinishedProdEntry({ product, handleChange }) {
         <tbody>
           {childItem.samples.map((sample, i) => (
             <tr key={i}>
+              <td>{childItem.finalized ? sample.fermCircuit : (<select value={sample.fermCircuit} onChange={(e) => localChangeArray('samples', i, 'fermCircuit', e.target.value)}>
+                <option value="">--</option>
+                <option value="A">A</option>
+                <option value="B">B</option>
+                <option value="C">C</option>
+                <option value="D">D</option>
+              </select>)}</td>
               <td>{childItem.finalized ? sample.BME : (<select value={sample.BME} onChange={(e) => localChangeArray('samples', i, 'BME', e.target.value)}>
                 <option value="">--</option>
                 <option value="B">B</option>
@@ -149,7 +164,8 @@ export default function FinishedProdEntry({ product, handleChange }) {
               <td>{childItem.finalized ? sample.solids : <input type="text" size={4} value={sample.solids} onChange={(e) => localChangeArray('samples', i, 'solids', e.target.value)}></input>}</td>
               <td>{childItem.finalized ? sample.pH : <input type="text" size={4} value={sample.pH} onChange={(e) => localChangeArray('samples', i, 'pH', e.target.value)}></input>}</td>
               <td>{childItem.finalized ? sample.brix : <input type="text" size={4} value={sample.brix} onChange={(e) => localChangeArray('samples', i, 'brix', e.target.value)}></input>}</td>
-              <td>{childItem.finalized ? sample.viscosity : <input type="text" size={6} value={sample.viscosity} onChange={(e) => localChangeArray('samples', i, 'viscosity', e.target.value)}></input>}</td>
+              <td>{childItem.finalized ? sample.viscosityDayOne : <input type="text" size={6} value={sample.viscosityDayOne} onChange={(e) => localChangeArray('samples', i, 'viscosityDayOne', e.target.value)}></input>}</td>
+              <td>{childItem.finalized ? sample.viscosityFinal : <input type="text" size={6} value={sample.viscosityFinal} onChange={(e) => localChangeArray('samples', i, 'viscosityFinal', e.target.value)}></input>}</td>
               <td>{childItem.finalized ? sample.passFail : (<select value={sample.passFail} onChange={(e) => localChangeArray('samples', i, 'passFail', e.target.value)}>
                 <option value="">---</option>
                 <option value="pass">Pass</option>
