@@ -1,6 +1,6 @@
 
 
-export default function ReportFinishedDiplay({ data }) {
+export default function ReportFinishedDisplay({ data }) {
   return (
     <ul>
       {data.map(item => (

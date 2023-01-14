@@ -7,7 +7,7 @@ export default async function handler(req, res) {
     let bodyObject = req.body
     bodyObject = JSON.parse(bodyObject)
     let query = { id: bodyObject.id }
-    let myUpdate = await db.collection('finishedProduct').replaceOne(query, bodyObject, { upsert: false })
+    let myUpdate = await db.collection('finishedProduct').replaceOne(query, { ...bodyObject, dateAdded: new Date(bodyObject.dateAdded) }, { upsert: false })
     res.json({ message: 'ok' })
     // let bodyObject = JSON.parse(req.body)
     // let query = { lot: bodyObject.lot }

@@ -55,6 +55,13 @@ export default function Header() {
               }
             </li>
             <li>
+              {(currentPath.includes('analysis')) ?
+                <Link href="/analysis" className="underline">Analysis</Link>
+                :
+                <Link href="/analysis">Analysis</Link>
+              }
+            </li>
+            <li>
               {(currentPath.includes('wiki')) ?
                 <Link href="/wiki" className="underline">Wiki</Link>
                 :

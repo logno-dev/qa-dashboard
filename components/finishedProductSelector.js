@@ -55,7 +55,6 @@ export default function FinishedProductSelector({ data }) {
       _id: uuid(),
       id: format(new Date(), 'MMddyy') + '-' + size + '-' + flavor,
       finalized: false,
-      dateAdded: new Date(),
       type: productType,
       subType: productSubType,
       size: size,
@@ -180,6 +179,7 @@ export default function FinishedProductSelector({ data }) {
                                 <option value="strawberry">Strawberry</option>
                                 <option value="berryBerry">Berry Berry</option>
                                 <option value="mango">Mango</option>
+                                <option value="peach">Peach</option>
                               </>
                             ) : null}
                           </select>

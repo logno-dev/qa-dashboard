@@ -61,7 +61,6 @@ export default function BatchLotSelector({ data }) {
         case 'esl':
           newProduct = {
             _id: uuid(),
-            dateAdded: new Date(),
             lot: altLot,
             tankNum,
             productType,
@@ -83,7 +82,6 @@ export default function BatchLotSelector({ data }) {
         case 'cheese':
           newProduct = {
             _id: uuid(),
-            dateAdded: new Date(),
             lot: altLot,
             tankNum,
             productType,
@@ -104,7 +102,6 @@ export default function BatchLotSelector({ data }) {
         default:
           newProduct = {
             _id: uuid(),
-            dateAdded: new Date(),
             lot,
             tankNum,
             productType,

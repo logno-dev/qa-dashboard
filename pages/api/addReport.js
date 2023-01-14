@@ -5,8 +5,8 @@ export default async function handler(req, res) {
   const db = client.db("products")
   let bodyObject
   if (req.method === 'POST') {
-      bodyObject = JSON.parse(req.body)
-      let myInsert = await db.collection('report').insertOne(bodyObject)
-      res.json({message: 'ok'})
- }
+    bodyObject = JSON.parse(req.body)
+    let myInsert = await db.collection('report').insertOne({ ...bodyObject, dateAdded: new Date() })
+    res.json({ message: 'ok' })
+  }
 }

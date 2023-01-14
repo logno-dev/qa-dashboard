@@ -6,7 +6,7 @@ export default async function handler(req, res) {
   let bodyObject
   if (req.method === 'POST') {
     bodyObject = JSON.parse(req.body)
-    let myInsert = await db.collection('finishedProduct').insertOne(bodyObject)
+    let myInsert = await db.collection('finishedProduct').insertOne({ ...bodyObject, dateAdded: new Date() })
     res.json({ message: 'ok' })
   }
 }
