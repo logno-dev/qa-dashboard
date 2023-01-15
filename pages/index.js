@@ -2,7 +2,7 @@
 import Layout from '../components/layout'
 import Link from "next/link";
 import { useSession } from 'next-auth/react'
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import clientPromise from '../lib/mongodb';
 import { format } from 'date-fns';
 
@@ -11,7 +11,7 @@ export async function getServerSideProps() {
     const client = await clientPromise;
     const db = client.db("communication");
 
-    const data = await db.collection("messages").find({}).sort({ dateAdded: -1 }).limit(100).toArray();
+    const data = await db.collection("messages").find({}).limit(100).toArray();
 
     return {
       props: { data: JSON.parse(JSON.stringify(data)) },
@@ -28,6 +28,8 @@ export default function Home({ data }) {
   const { data: session, status } = useSession()
   const [newMessage, setNewMessage] = useState('')
   const [messageList, setMessageList] = useState(data)
+
+  const messageBoardScroll = useRef(null)
 
   const sendIcon = (
     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
@@ -50,7 +52,7 @@ export default function Home({ data }) {
     } catch (e) {
       console.log(e)
     } finally {
-      setMessageList([body, ...messageList])
+      setMessageList([...messageList, body])
       setNewMessage('')
     }
   }
@@ -64,6 +66,13 @@ export default function Home({ data }) {
     }
   }
 
+  useEffect(() => {
+    if (messageBoardScroll.current) {
+      messageBoardScroll.current.scrollTop = messageBoardScroll.current.scrollHeight
+    }
+    console.log(messageBoardScroll)
+  }, [messageBoardScroll, messageList])
+
   return (
     <> <Layout title="Home">
       <div className="flex justify-center p-12">
@@ -72,7 +81,7 @@ export default function Home({ data }) {
           <h2>Message Board</h2>
           <div className="border-2 border-gray-500 rounded-xl">
 
-            <div className="max-h-60 overflow-y-scroll">
+            <div className="max-h-60 overflow-y-scroll" ref={messageBoardScroll}>
               {messageList.length > 0 ? (
                 <ul>
                   {messageList.map(message => (
