@@ -30,7 +30,7 @@ export default function Analysis() {
   return (
     <>
       <Layout>
-        <div className="body-wrapper overflow-y-scroll data-entry flex-grow p-4 flex flex-col justify-center items-center">
+        <div className="body-wrapper overflow-y-scroll data-entry flex-grow p-4 flex flex-col items-center">
           <form id="filter" className="flex m-4 gap-2 items-center">
             <select value={category} onChange={e => setCategory(e.target.value)}>
               <option value="">-Select Category-</option>

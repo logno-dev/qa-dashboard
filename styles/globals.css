@@ -90,7 +90,7 @@ td {
 }
 
 nav > ul > li {
-  @apply text-3xl underline-offset-8 hover:underline 
+  @apply text-2xl underline-offset-8 hover:underline 
 }
 
 h1, h2, h3, h4 {

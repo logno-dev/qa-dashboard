@@ -41,7 +41,7 @@ export const authOptions = {
 
         if (check) {
           // Any object returned will be saved in `user` property of the JWT
-          return { id: result._id, email: retrun.email }
+          return { id: result._id, email: result.email, role: result.permission }
         } else {
           // If you return null then an error will be displayed advising the user to check their details.
           return null
@@ -52,7 +52,7 @@ export const authOptions = {
     })
   ],
   callbacks: {
-    async signIn({ user, email, credentials }) {
+    async signIn({ user, email, role, credentials }) {
       return true
     },
     async signOut() {
@@ -61,15 +61,20 @@ export const authOptions = {
     async jwt({ token, user }) {
       if (user) {
         token.id = user.id;
+        token.user = user
       }
       return token;
     },
-    async session({ session, token }) {
+    async session({ session, token, user }) {
       if (token) {
         session.id = token.id;
+        session.user = { username: token.user.email, role: token.user.permission }
       }
       return session;
     }
+  },
+  session: {
+    strategy: 'jwt',
   }
 }
 

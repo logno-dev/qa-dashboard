@@ -5,12 +5,12 @@ import Image from "next/image";
 import logo from '../public/fp_logo_white.svg'
 import { signOut, useSession } from 'next-auth/react'
 
-
 export default function Header() {
 
   const router = useRouter()
   const currentPath = router.pathname
   const { data: session, status } = useSession()
+
 
   return (
     <div className="fixed top-0 w-full z-10">
@@ -21,7 +21,7 @@ export default function Header() {
           </Link>
         </div>
         <div className="justify-self-end row-start-1 z-20">
-          <span className="font-semibold">Signed in as</span> {session.user.email}
+          <span className="font-semibold">Signed in as</span> {session.user.username}
           <button className="font-semibold mx-2 py-2 px-4 bg-gray-700 rounded-3xl hover:text-gray-900 hover:bg-gray-50" onClick={() => signOut()}>Logout</button>
         </div>
         <nav className="fixed top-5 left-0 right-0 w-full flex justify-center">
@@ -68,6 +68,15 @@ export default function Header() {
                 <Link href="/wiki">Wiki</Link>
               }
             </li>
+            {session.user.role === "admin" ? (
+              <li>
+                {(currentPath.includes('admin')) ?
+                  <Link href="/admin" className="underline">Admin</Link>
+                  :
+                  <Link href="/admin">Admin</Link>
+                }
+              </li>
+            ) : null}
           </ul>
         </nav>
       </header>
