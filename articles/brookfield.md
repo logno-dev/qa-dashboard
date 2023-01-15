@@ -22,9 +22,9 @@ The purpose of the Brookfield viscometer is to test the viscosity of drinkable f
 
 **Centipoise(cP):** A unit of dynamic viscosity in the centimeter-gram-second system of units equal to one one-hundredth of a poise. The viscosity of water at 70 F is 1 centipoise.
 
-**Speed:** The speed at which the motor rotates the spindle. The speed setting will vary based upon the spindle in use and the viscosity of the product.\
+**Speed:** The speed at which the motor rotates the spindle. The speed setting will vary based upon the spindle in use and the viscosity of the product.
 
-**Torque:** The percentage value on the device screen display between the speed(##RPM) and the spindle(s##). The device uses the torque to calculate the final cP.\
+**Torque:** The percentage value on the device screen display between the speed(##RPM) and the spindle(s##). The device uses the torque to calculate the final cP.
 
 **Spindle:** The spindle is the portion of the device that is submerged into the sample. The entire body or disc of the spindle must be submerged for a proper reading. Most spindles will have a marker to show the level the sample should approach. The device must be set to the number associated with the specific spindle. This number should be etched onto the shaft of the spindle.
 
