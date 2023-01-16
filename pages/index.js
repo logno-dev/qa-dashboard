@@ -81,11 +81,11 @@ export default function Home({ data }) {
           <h2>Message Board</h2>
           <div className="border-2 border-gray-500 rounded-xl">
 
-            <div className="max-h-60 overflow-y-scroll" ref={messageBoardScroll}>
+            <div className="max-h-68 overflow-y-scroll" ref={messageBoardScroll}>
               {messageList.length > 0 ? (
-                <ul>
+                <ul className="bg-white p-1 rounded-xl">
                   {messageList.map(message => (
-                    <li key={message.date} className="p-2">
+                    <li key={message.date} className="p-2 m-4 bg-blue-100 rounded-2xl">
                       <p className="text-sm text-gray-400">{message.date}</p>
                       <p className="text-2xl">{message.contents}</p>
                     </li>
@@ -95,7 +95,7 @@ export default function Home({ data }) {
 
             </div>
             <form id="messageboard" className="flex gap-1 m-1">
-              <textarea rows={1} className="flex-grow rounded-xl" value={newMessage} onChange={e => setNewMessage(e.target.value)} onKeyDown={onEnterPress} />
+              <textarea rows={1} className="flex-grow rounded-xl border-gray-700 border-2" value={newMessage} onChange={e => setNewMessage(e.target.value)} onKeyDown={onEnterPress} />
               {newMessage ?
                 (<button type="submit" className="button" onClick={e => addNewMessage(e)}>{sendIcon}</button>)
                 :

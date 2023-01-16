@@ -1,4 +1,3 @@
-import { compare } from "bcryptjs";
 import NextAuth from "next-auth/next";
 import CredentialsProvider from "next-auth/providers/credentials"
 import clientPromise from "../../../lib/mongodb";
@@ -20,20 +19,20 @@ export const authOptions = {
       },
       async authorize(credentials, req) {
         // Add logic here to look up the user from the credentials supplied
-        try {
-          const client = await clientPromise
+        // try {
+        const client = await clientPromise
 
-          const db = client.db("authenticate")
-          const users = await db.collection("users")
+        const db = client.db("authenticate")
+        const users = await db.collection("users")
 
-          const query = { email: credentials.username }
+        const query = { email: credentials.username }
 
-          const result = await users.findOne(query)
+        const result = await users.findOne(query)
 
-          return result
-        } catch (e) {
-          console.log(e)
-        }
+        // return result
+        // } catch (e) {
+        // console.log(e)
+        // }
 
         const check = await bcrypt.compare(credentials.password, result.password)
         // const user = { id: result._id, email: result.email }
@@ -65,16 +64,16 @@ export const authOptions = {
       }
       return token;
     },
-    async session({ session, token, user }) {
+    async session({ session, token }) {
       if (token) {
         session.id = token.id;
-        session.user = { username: token.user.email, role: token.user.permission }
+        session.user = { username: token.user.email, role: token.user.role }
       }
       return session;
     }
   },
   session: {
-    strategy: 'jwt',
+    // strategy: 'jwt',
   }
 }
 
