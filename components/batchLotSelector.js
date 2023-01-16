@@ -203,7 +203,15 @@ export default function BatchLotSelector({ data }) {
             null}
 
           {(productType && productType !== 'esl' && productType !== 'cheese') ?
-            <div>Tank:<input type="text" value={tankNum} placeholder="####" onChange={(e) => setTankNum(e.target.value)}></input></div>
+            <div>Tank:
+              <select value={tankNum} onChange={e => setTankNum(e.target.value)}>
+                <option value="">--select tank--</option>
+                <option value="2100">2100</option>
+                <option value="2200">2200</option>
+                <option value="2300">2300</option>
+                <option value="4000">4000</option>
+              </select>
+            </div>
             :
             null
           }
