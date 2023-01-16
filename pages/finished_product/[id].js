@@ -75,6 +75,17 @@ export default function BatchLot({ data }) {
     };
   }, [saved]);
 
+  //Auto-save function
+  useEffect(() => {
+    const autoSaveInterval = setInterval(() => {
+      updateItem(selectedLot)
+    }, 15000)
+    return () => {
+      clearInterval(autoSaveInterval)
+    }
+  }, [selectedLot]
+  )
+
   const Status = () => {
     if (changed && !saved) {
       return (
