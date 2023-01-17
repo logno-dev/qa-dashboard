@@ -121,6 +121,57 @@ export default function ReportTypeYogurt({ data }) {
           ))}
         </tbody>
       </table>
+
+      <h2 className="text-xl">Fermentation Break Transfer</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>
+              Transfer Start
+            </th>
+            <th>
+              pH
+            </th>
+            <th>
+              Speed
+            </th>
+            <th>
+              Temp (&deg;F)
+            </th>
+            <th>
+              White Mass Weight(lbs)
+            </th>
+            <th>
+              Hold Tank Start (lbs)
+            </th>
+            <th>
+              Hold Tank End Weight (lbs)
+            </th>
+            <th>
+              Transfer End
+            </th>
+            <th>
+              Sign Off
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>{data.transfer.breakTimeStart}</td>
+            <td>{data.transfer.pH}</td>
+            <td>{data.transfer.speed}</td>
+            <td>{data.transfer.temp}</td>
+            <td>{data.transfer.whiteMassWeight}</td>
+            <td>{data.transfer.holdTankWeightStart}</td>
+            <td>{data.transfer.holdTankWeightEnd}</td>
+            <td>{data.transfer.breakTimeEnd}</td>
+            <td>{data.transfer.signOff}</td>
+          </tr>
+        </tbody>
+      </table>
+
+
+
       {data.comments.map(comment => (
         <p key={comment.date}>{comment.date} - {comment.contents}</p>
       ))}
