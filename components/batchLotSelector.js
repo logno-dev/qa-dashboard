@@ -176,6 +176,7 @@ export default function BatchLotSelector({ data }) {
           <select value={productType} onChange={(e) => setProductType(e.target.value)}>
             <option value="">Select product type</option>
             <option value="yogurt">Yogurt</option>
+            <option value="unsvanilla">Unsweetened Vanilla</option>
             <option value="kefir">Kefir</option>
             <option value="tj-yogurt">TJ Yogurt</option>
             <option value="sour-cream">Sour Cream</option>
