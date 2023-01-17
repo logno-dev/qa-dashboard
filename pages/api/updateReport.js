@@ -7,7 +7,6 @@ export default async function handler(req, res) {
     let bodyObject = req.body
     bodyObject = JSON.parse(bodyObject)
     let query = { reportId: bodyObject.reportId }
-    let myUpdate = await db.collection('report').replaceOne(query, { ...bodyObject, dateAdded: new Date(bodyObject.dateAdded) }, { upsert: false })
     bodyObject.contents.forEach(async (item) => {
       let collection = bodyObject.type
       let query
@@ -18,6 +17,7 @@ export default async function handler(req, res) {
       }
       let finalizedLot = await db.collection(collection).updateOne(query, { $set: { finalized: true } }, { upsert: false })
     })
+    let myUpdate = await db.collection('report').replaceOne(query, { ...bodyObject, dateAdded: new Date(bodyObject.dateAdded) }, { upsert: false })
     res.json({ message: 'ok' })
     // let bodyObject = JSON.parse(req.body)
     // let query = { lot: bodyObject.lot }
