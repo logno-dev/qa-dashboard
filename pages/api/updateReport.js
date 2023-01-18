@@ -9,13 +9,13 @@ export default async function handler(req, res) {
     let query = { reportId: bodyObject.reportId }
     bodyObject.contents.forEach(async (item) => {
       let collection = bodyObject.type
-      let query
+      let newQuery
       if (bodyObject.type === 'batching') {
-        query = { lot: item.lot }
+        newQuery = { lot: item.lot }
       } else if (bodyObject.type === 'finishedProduct') {
-        query = { id: item.id }
+        newQuery = { id: item.id }
       }
-      let finalizedLot = await db.collection(collection).updateOne(query, { $set: { finalized: true } }, { upsert: false })
+      let finalizedLot = await db.collection(collection).updateOne(newQuery, { $set: { finalized: true } }, { upsert: false })
     })
     let myUpdate = await db.collection('report').replaceOne(query, { ...bodyObject, dateAdded: new Date(bodyObject.dateAdded) }, { upsert: false })
     res.json({ message: 'ok' })
