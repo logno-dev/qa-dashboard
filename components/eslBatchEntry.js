@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react'
 import format from 'date-fns/format'
+import Plus from './icons/plus'
+import Ex from './icons/ex'
 
 export default function EslBatchEntry({ product, handleChange }) {
   const [childItem, setChildItem] = useState(product)
@@ -52,6 +54,14 @@ export default function EslBatchEntry({ product, handleChange }) {
     })
     setNewComment("")
   }
+
+  function removeEmptyLine(array, i, e) {
+    e.preventDefault()
+    let tempObject = { ...childItem }
+    tempObject[array].splice(i, 1)
+    setChildItem(tempObject)
+  }
+
 
   useEffect(() => {
     handleChange(childItem, firstLoad)
@@ -112,12 +122,19 @@ export default function EslBatchEntry({ product, handleChange }) {
                 <option value="fail">Fail</option>
               </select>)}</td>
               <td>{childItem.finalized ? batch.signOff : <input type="text" value={batch.signOff} onChange={(e) => localChangeArray('batches', i, 'signOff', e.target.value)}></input>}</td>
+              {childItem.finalized ? null : (
+                <td>
+                  {(Object.values(batch).every(x => x === "")) ? (
+                    <button type="button" onClick={(e) => removeEmptyLine("batches", i, e)} className="float-right text-red-600"><Ex /></button>
+                  ) : null}
+                </td>
+              )}
             </tr>
           ))}
           {childItem.finalized ? null : (
             <tr>
               <td colSpan={6}>
-                <button type="button" onClick={addBatch}>+Add new batch</button>
+                <button type="button" className="flex w-full justify-center font-extrabold text-green-500 hover:bg-green-500 hover:text-white rounded" onClick={addBatch}><Plus /></button>
               </td>
             </tr>
           )}

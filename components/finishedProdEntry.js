@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react'
 // import uuid from 'react-uuid'
 import format from 'date-fns/format'
+import Plus from './icons/plus'
+import Ex from './icons/ex'
 
 export default function FinishedProdEntry({ product, handleChange }) {
   const [childItem, setChildItem] = useState(product)
@@ -67,6 +69,13 @@ export default function FinishedProdEntry({ product, handleChange }) {
       ...childItem, comments: newCommentArray
     })
     setNewComment("")
+  }
+
+  function removeEmptyLine(array, i, e) {
+    e.preventDefault()
+    let tempObject = { ...childItem }
+    tempObject[array].splice(i, 1)
+    setChildItem(tempObject)
   }
 
   useEffect(() => {
@@ -172,12 +181,21 @@ export default function FinishedProdEntry({ product, handleChange }) {
                 <option value="fail">Fail</option>
               </select>)}</td>
               <td>{childItem.finalized ? sample.signOff : <input type="text" size={3} value={sample.signOff} onChange={(e) => localChangeArray('samples', i, 'signOff', e.target.value)}></input>}</td>
+
+              {childItem.finalized ? null : (
+                <td>
+                  {(Object.values(sample).every(x => x === "")) ? (
+                    <button type="button" onClick={(e) => removeEmptyLine("samples", i, e)} className="float-right text-red-600"><Ex /></button>
+                  ) : null}
+                </td>
+              )}
+
             </tr>
           ))}
           {childItem.finalized ? null : (
             <tr>
-              <td colSpan={11}>
-                <button type="button" onClick={addSample}>+Add new sample</button>
+              <td colSpan={13}>
+                <button type="button" className="flex w-full justify-center font-extrabold text-green-500 hover:bg-green-500 hover:text-white rounded" onClick={addSample}><Plus /></button>
               </td>
             </tr>
           )}
