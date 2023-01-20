@@ -39,6 +39,7 @@ export default function BatchLot({ data }) {
   const [savedItem, setSavedItem] = useState(data[data.findIndex(e => e.lot === id)])
 
   useEffect(() => {
+    // console.log(selectedLot)
     setSelectedLot(data[data.findIndex(e => e.lot === id)])
     setSavedItem(data[data.findIndex(e => e.lot === id)])
     // console.log(selectedLot)
@@ -80,11 +81,14 @@ export default function BatchLot({ data }) {
 
   //Auto-save function
   useEffect(() => {
-    const autoSaveInterval = setInterval(() => {
-      updateItem(selectedLot)
+    // console.log(selectedLot)
+    const autoSaveTimeout = setTimeout(() => {
+      if (!saved) {
+        updateItem(selectedLot)
+      }
     }, 15000)
     return () => {
-      clearInterval(autoSaveInterval)
+      clearTimeout(autoSaveTimeout)
     }
   }, [selectedLot]
   )
@@ -123,6 +127,7 @@ export default function BatchLot({ data }) {
 
 
   function updateItemFromChild(product, firstLoad) {
+    // console.log(product)
     setSelectedLot(product)
     if (JSON.stringify(savedItem) === JSON.stringify(product)) {
       setSaved(true)
@@ -155,6 +160,7 @@ export default function BatchLot({ data }) {
 
   function handleSave(e, lot) {
     e.preventDefault()
+    console.log(lot)
     updateItem(lot)
   }
 

@@ -67,13 +67,14 @@ export default function FermentedBatchEntry({ product, handleChange }) {
     })
   }
 
-  function addComment() {
+  function addComment(e) {
+    e.preventDefault()
     let commentObject = {
       date: format(new Date(), 'MM-dd-yyy h:mmaa'),
       contents: newComment
     }
 
-    let newCommentArray = [...childItem.comments]
+    let newCommentArray = childItem.comments.slice()
     newCommentArray.push(commentObject)
 
     setChildItem({
@@ -90,6 +91,7 @@ export default function FermentedBatchEntry({ product, handleChange }) {
   }
 
   useEffect(() => {
+    // console.log(childItem)
     handleChange(childItem, firstLoad)
     setFirstLoad(false)
   }, [childItem])
@@ -97,12 +99,12 @@ export default function FermentedBatchEntry({ product, handleChange }) {
   useEffect(() => {
     if (!childItem || JSON.stringify(product) !== JSON.stringify(childItem)) {
       setFirstLoad(true)
+      setChildItem(product)
     }
     if (JSON.stringify(product) !== JSON.stringify(childItem) && product.lot === childItem.lot) {
       setFirstLoad(false)
     }
-    setChildItem(product)
-    setNewComment("")
+    // setNewComment("")
   }, [product])
 
   return (
@@ -184,7 +186,7 @@ export default function FermentedBatchEntry({ product, handleChange }) {
               </select>)}</td>
               <td>{childItem.finalized ? batch.signOff : <input type="text" value={batch.signOff} onChange={(e) => localChangeArray('batches', i, 'signOff', e.target.value)}></input>}</td>
               {childItem.finalized ? null : (
-                <td>
+                <td className="delete-line">
                   {(Object.values(batch).every(x => x === "")) ? (
                     <button type="button" onClick={(e) => removeEmptyLine("batches", i, e)} className="float-right text-red-600"><Ex /></button>
                   ) : null}
@@ -242,11 +244,13 @@ export default function FermentedBatchEntry({ product, handleChange }) {
                 <option value="fail">Fail</option>
               </select>)}</td>
               <td>{childItem.finalized ? check.signOff : <input type="text" value={check.signOff} onChange={(e) => localChangeArray('fermQA', i, 'signOff', e.target.value)}></input>}</td>
-              <td>
-                {(Object.values(check).every(x => x === "")) ? (
-                  <button type="button" onClick={(e) => removeEmptyLine("fermQA", i, e)} className="float-right text-red-600"><Ex /></button>
-                ) : null}
-              </td>
+              {childItem.finalized ? null : (
+                <td className="delete-line">
+                  {(Object.values(check).every(x => x === "")) ? (
+                    <button type="button" onClick={(e) => removeEmptyLine("fermQA", i, e)} className="float-right text-red-600"><Ex /></button>
+                  ) : null}
+                </td>
+              )}
             </tr>
           ))}
           {childItem.finalized ? null : (
@@ -313,7 +317,7 @@ export default function FermentedBatchEntry({ product, handleChange }) {
       {childItem.finalized ? null : (
         <div className="flex justify-center items-center">
           <textarea rows={4} cols={90} placeholder="comments..." value={newComment} onChange={(e) => setNewComment(e.target.value)} />
-          <button type="button" className="button m-2" onClick={addComment} >Add<br />Comment</button>
+          <button type="button" className="button m-2" onClick={e => addComment(e)} >Add<br />Comment</button>
         </div>
       )}
     </>

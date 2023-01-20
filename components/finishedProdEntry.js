@@ -183,7 +183,7 @@ export default function FinishedProdEntry({ product, handleChange }) {
               <td>{childItem.finalized ? sample.signOff : <input type="text" size={3} value={sample.signOff} onChange={(e) => localChangeArray('samples', i, 'signOff', e.target.value)}></input>}</td>
 
               {childItem.finalized ? null : (
-                <td>
+                <td className="delete-line">
                   {(Object.values(sample).every(x => x === "")) ? (
                     <button type="button" onClick={(e) => removeEmptyLine("samples", i, e)} className="float-right text-red-600"><Ex /></button>
                   ) : null}

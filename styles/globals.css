@@ -77,11 +77,11 @@ table {
 }
 
 thead {
-  @apply bg-gray-300 border-gray-300 border-2
+  @apply bg-gray-300 
 }
 
 th {
-  @apply px-2
+  @apply px-2 border-gray-300 border-2
 }
 
 
@@ -89,6 +89,9 @@ td {
   @apply px-2 border-gray-300 border-2 text-center
 }
 
+td.delete-line {
+  border: none;
+}
 nav > ul > li {
   @apply text-2xl underline-offset-8 hover:underline 
 }

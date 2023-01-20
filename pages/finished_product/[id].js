@@ -77,11 +77,11 @@ export default function BatchLot({ data }) {
 
   //Auto-save function
   useEffect(() => {
-    const autoSaveInterval = setInterval(() => {
+    const autoSaveTimeout = setTimeout(() => {
       updateItem(selectedProd)
     }, 15000)
     return () => {
-      clearInterval(autoSaveInterval)
+      clearTimeout(autoSaveTimeout)
     }
   }, [selectedProd]
   )

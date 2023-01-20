@@ -123,7 +123,7 @@ export default function EslBatchEntry({ product, handleChange }) {
               </select>)}</td>
               <td>{childItem.finalized ? batch.signOff : <input type="text" value={batch.signOff} onChange={(e) => localChangeArray('batches', i, 'signOff', e.target.value)}></input>}</td>
               {childItem.finalized ? null : (
-                <td>
+                <td className="delete-line">
                   {(Object.values(batch).every(x => x === "")) ? (
                     <button type="button" onClick={(e) => removeEmptyLine("batches", i, e)} className="float-right text-red-600"><Ex /></button>
                   ) : null}
