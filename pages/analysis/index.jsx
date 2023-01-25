@@ -32,36 +32,40 @@ export default function Analysis() {
     <>
       <Layout>
 
-        <AnalNav />
+        <div className=" flex flex-col items-center">
 
-        <div className="body-wrapper overflow-y-scroll data-entry flex-grow p-4 flex flex-col items-center">
-          <form id="filter" className="flex m-4 gap-2 items-center">
-            <select value={category} onChange={e => setCategory(e.target.value)}>
-              <option value="">-Select Category-</option>
-              <option value="finishedProduct">Finished Product</option>
-              <option value="batching">Batching</option>
-            </select>
-            <label htmlFor="startDate">Start Date</label>
-            <input type="date" id="startDate" value={startDate} onChange={e => setStartDate(e.target.value)} />
-            <label htmlFor="endDate">End Date</label>
-            <input type="date" id="endDate" value={endDate} onChange={e => setEndDate(e.target.value)} />
-            {(category && startDate && endDate) ? (
-              <button className="button" type="button" onClick={handleFormSubmit}>Get Summary</button>
+          <AnalNav />
+
+          <div className="body-wrapper data-entry flex flex-col items-center p-4 ">
+
+            <form id="filter" className="flex m-4 gap-2 items-center">
+              <select value={category} onChange={e => setCategory(e.target.value)}>
+                <option value="">-Select Category-</option>
+                <option value="finishedProduct">Finished Product</option>
+                <option value="batching">Batching</option>
+              </select>
+              <label htmlFor="startDate">Start Date</label>
+              <input type="date" id="startDate" value={startDate} onChange={e => setStartDate(e.target.value)} />
+              <label htmlFor="endDate">End Date</label>
+              <input type="date" id="endDate" value={endDate} onChange={e => setEndDate(e.target.value)} />
+              {(category && startDate && endDate) ? (
+                <button className="button" type="button" onClick={handleFormSubmit}>Get Summary</button>
+              ) :
+                <button className="button-disabled" type="button" onClick={e => e.preventDefault}>Get Summary</button>
+              }
+            </form>
+            {items ? (
+              <>
+                {category === "finishedProduct" ? (
+                  <ReportFinishedDisplay data={items} />
+                ) : null}
+                {category === "batching" ? (
+                  <ReportDisplayBlock data={items} />
+                ) : null}
+              </>
             ) :
-              <button className="button-disabled" type="button" onClick={e => e.preventDefault}>Get Summary</button>
-            }
-          </form>
-          {items ? (
-            <>
-              {category === "finishedProduct" ? (
-                <ReportFinishedDisplay data={items} />
-              ) : null}
-              {category === "batching" ? (
-                <ReportDisplayBlock data={items} />
-              ) : null}
-            </>
-          ) :
-            null}
+              null}
+          </div>
         </div>
       </Layout>
     </>

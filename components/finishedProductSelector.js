@@ -230,6 +230,7 @@ export default function FinishedProductSelector({ data }) {
                                 <option value="strawberry">Strawberry</option>
                                 <option value="blackberry">Blackberry</option>
                                 <option value="mangoPeach">Mango Peach</option>
+                                <option value="mango">Mango</option>
                               </>
                             ) : null}
                           </select>
