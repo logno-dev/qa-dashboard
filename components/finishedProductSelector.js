@@ -215,6 +215,8 @@ export default function FinishedProductSelector({ data }) {
                                 <option value="strawberry">Strawberry</option>
                                 <option value="blueberry">Blueberry</option>
                                 <option value="mango">Mango</option>
+                                <option value="canBlueberry">Canada Blueberry</option>
+                                <option value="CanStrawberry">Canada Strawberry</option>
                               </>
                             ) : null}
                             {size === '8' ? (
