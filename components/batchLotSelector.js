@@ -198,7 +198,7 @@ export default function BatchLotSelector({ data }) {
               <option value="">Choose sub type</option>
               <option value="whiteCheese">White Cheese</option>
               <option value="cheddar">Cheddar</option>
-              <option value="parmesan">Parmesan</option>
+              <option value="queso">Queso Fresco</option>
             </select>)
             :
             null}
