@@ -10,6 +10,9 @@ export default function ReportFinishedDisplay({ data }) {
             <thead>
               <tr>
                 <th>
+                  Ferm Circuit
+                </th>
+                <th>
                   BME
                 </th>
                 <th>
@@ -50,6 +53,7 @@ export default function ReportFinishedDisplay({ data }) {
             <tbody>
               {item.samples.map((sample, i) => (
                 <tr key={i}>
+                  <td>{sample.fermCircuit}</td>
                   <td>{sample.BME}</td>
                   <td>{sample.enjoyBy}</td>
                   <td>{sample.label}</td>
