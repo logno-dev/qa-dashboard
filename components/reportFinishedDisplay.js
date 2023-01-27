@@ -58,8 +58,8 @@ export default function ReportFinishedDisplay({ data }) {
                   <td>{sample.solids}</td>
                   <td>{sample.pH}</td>
                   <td>{sample.brix}</td>
-                  <td>{sample.ViscosityDayOne}</td>
-                  <td>{sample.ViscosityFinal}</td>
+                  <td>{sample.viscosityDayOne}</td>
+                  <td>{sample.viscosityFinal}</td>
                   <td>{sample.passFail}</td>
                   <td>{sample.signOff}</td>
                 </tr>
