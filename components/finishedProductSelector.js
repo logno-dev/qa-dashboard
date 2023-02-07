@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
-import { format } from 'date-fns'
+import { format, add } from 'date-fns'
 import uuid from 'react-uuid'
 
 
@@ -14,6 +14,7 @@ export default function FinishedProductSelector({ data }) {
   const [productSubType, setProductSubType] = useState("")
   const [size, setSize] = useState("")
   const [flavor, setFlavor] = useState("")
+  const [productDate, setProductDate] = useState(format(new Date(), 'yyy-MM-dd'))
 
 
   function resetErrors() {
@@ -41,7 +42,7 @@ export default function FinishedProductSelector({ data }) {
       setValid(false)
       return
     }
-    if (data.findIndex(e => e.id === (format(new Date(), 'MMddyy') + '-' + size + '-' + flavor)) !== -1) {
+    if (data.findIndex(e => e.id === (format(add(new Date(productDate), { days: 1 }), 'MMddyy') + '-' + size + '-' + flavor)) !== -1) {
       setDuplicate(true)
       return
     }
@@ -53,7 +54,7 @@ export default function FinishedProductSelector({ data }) {
 
     let newProd = {
       _id: uuid(),
-      id: format(new Date(), 'MMddyy') + '-' + size + '-' + flavor,
+      id: format(add(new Date(productDate), { days: 1 }), 'MMddyy') + '-' + size + '-' + flavor,
       finalized: false,
       type: productType,
       subType: productSubType,
@@ -61,6 +62,7 @@ export default function FinishedProductSelector({ data }) {
       flavor: flavor,
       enjoyBy: "",
       label: "",
+      dateAdded: new Date(productDate),
       comments: [],
       shelfLife: {
         dateChecked: "",
@@ -120,6 +122,7 @@ export default function FinishedProductSelector({ data }) {
     <>
       <div className="body-wrapper overflow-y-scroll item-selector min-w-[20rem] p-4">
         <form className="flex flex-col gap-2  border-4 border-green-700 rounded-md p-2" onChange={resetErrors}>
+          <input type="date" value={productDate} onChange={e => setProductDate(e.target.value)} />
           <select value={productType} onChange={(e) => setProductType(e.target.value)} >
             <option value="" >Select Product Type</option>
             <option value="fermented">Fermented</option>

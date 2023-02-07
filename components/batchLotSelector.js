@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
-import { format } from 'date-fns'
+import { format, add } from 'date-fns'
 import uuid from 'react-uuid'
 
 
@@ -10,6 +10,7 @@ export default function BatchLotSelector({ data }) {
   const [tankNum, setTankNum] = useState('')
   const [productType, setProductType] = useState('')
   const [productSubType, setProductSubType] = useState('')
+  const [productDate, setProductDate] = useState(format(new Date(), 'yyy-MM-dd'))
   const [valid, setValid] = useState(true)
   const [duplicate, setDuplicate] = useState(false)
   const [addingLot, setAddingLot] = useState(false)
@@ -27,8 +28,8 @@ export default function BatchLotSelector({ data }) {
 
   async function addNewLot(e) {
     e.preventDefault()
-    const lot = format(new Date(), 'MMddyyy') + '-' + tankNum
-    const altLot = format(new Date(), 'MMddyyy') + '-' + productSubType
+    const lot = format(add(new Date(productDate), { days: 1 }), 'MMddyyy') + '-' + tankNum
+    const altLot = format(add(new Date(productDate), { days: 1 }), 'MMddyyy') + '-' + productSubType
     if (
       ((
         productType !== 'esl' &&
@@ -66,6 +67,7 @@ export default function BatchLotSelector({ data }) {
             productType,
             fermented: false,
             finalized: false,
+            dateAdded: productDate,
             comments: [],
             batches: [
               {
@@ -87,6 +89,7 @@ export default function BatchLotSelector({ data }) {
             productType,
             fermented: false,
             finalized: false,
+            dateAdded: productDate,
             comments: [],
             batches: [
               {
@@ -107,6 +110,7 @@ export default function BatchLotSelector({ data }) {
             productType,
             fermented: true,
             finalized: false,
+            dateAdded: productDate,
             comments: [],
             ferm: {
               tankStart: "",
@@ -173,6 +177,7 @@ export default function BatchLotSelector({ data }) {
     <>
       <div className="body-wrapper overflow-y-scroll item-selector min-w-[20rem] p-4">
         <form className="flex flex-col gap-2  border-4 border-green-700 rounded-md p-2" onChange={resetErrors}>
+          <input type="date" value={productDate} onChange={e => setProductDate(e.target.value)} />
           <select value={productType} onChange={(e) => setProductType(e.target.value)}>
             <option value="">Select product type</option>
             <option value="yogurt">Yogurt</option>
