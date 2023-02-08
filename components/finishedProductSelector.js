@@ -161,6 +161,7 @@ export default function FinishedProductSelector({ data }) {
                                 <option value="honey">Honey Alternative</option>
                                 <option value="tjPlain">TJ Plain</option>
                                 <option value="canPlain">Canada Plain</option>
+                                <option value="canVanilla">Canada Vanilla</option>
                                 <option value="canUnsVanilla">Canada Unsweetened Vanilla</option>
                               </>
                             ) : null}
