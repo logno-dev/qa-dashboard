@@ -176,7 +176,7 @@ export default function BatchLotSelector({ data }) {
   return (
     <>
       <div className="body-wrapper overflow-y-scroll item-selector min-w-[20rem] p-4">
-        <form className="flex flex-col gap-2  border-4 border-green-700 rounded-md p-2" onChange={resetErrors}>
+        <form className="flex flex-col gap-2  border-4 border-green-700 rounded-md p-2 sticky top-0 bg-gray-100" onChange={resetErrors}>
           <input type="date" value={productDate} onChange={e => setProductDate(e.target.value)} />
           <select value={productType} onChange={(e) => setProductType(e.target.value)}>
             <option value="">Select product type</option>

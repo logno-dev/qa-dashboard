@@ -10,10 +10,10 @@ import ReportFinishedDisplay from "../../components/reportFinishedDisplay";
 
 export default function Analysis() {
 
-  const [items, setItems] = useState()
-  const [category, setCategory] = useState()
-  const [startDate, setStartDate] = useState()
-  const [endDate, setEndDate] = useState()
+  const [items, setItems] = useState([])
+  const [category, setCategory] = useState('')
+  const [startDate, setStartDate] = useState('')
+  const [endDate, setEndDate] = useState('')
 
   async function getData() {
     const res = await fetch(`/api/getSummary?collection=${category}&start=${startDate}&end=${endDate}`, {
@@ -39,7 +39,11 @@ export default function Analysis() {
           <div className="body-wrapper data-entry flex flex-col items-center p-4 ">
 
             <form id="filter" className="flex m-4 gap-2 items-center">
-              <select value={category} onChange={e => setCategory(e.target.value)}>
+              <select value={category} onChange={e => {
+                setItems([])
+                setCategory(e.target.value)
+              }
+              }>
                 <option value="">-Select Category-</option>
                 <option value="finishedProduct">Finished Product</option>
                 <option value="batching">Batching</option>

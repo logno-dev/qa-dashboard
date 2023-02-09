@@ -97,7 +97,7 @@ export default function FinishedProdEntry({ product, handleChange }) {
   return (
     <>
       <div className="flex justify-evenly gap-8 text-3xl font-bold text-blue-800 p-4">
-        <h2>Product Type: <span className="text-orange-800">{childItem.productType}</span></h2>
+        <h2>Product Type: <span className="text-orange-800">{childItem.subType}</span></h2>
         <h2> ID: <span className="text-orange-800">{childItem.id}</span></h2>
       </div>
       <div className="text-2xl font-bold">
