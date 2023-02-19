@@ -1,6 +1,6 @@
 import { useSession } from "next-auth/react";
-import AdminNav from "../../components/admin/nav";
-import Layout from "../../components/layout";
+import AdminNav from "../../../components/admin/nav";
+import Layout from "../../../components/layout";
 
 
 
@@ -19,8 +19,13 @@ export default function Admin() {
 
               <AdminNav />
 
-              <div className="flex flex-col items-center">
-                <h1>Admin Panel</h1>
+              <div className="flex items-stretch h-full">
+                <div className="bg-gray-500 w-40 h-full">
+                  <ul>
+                    {}
+                  </ul>
+                </div>
+                <h1 className={"rounded-lg p-4 " + (false ? "bg-lime-200" : "bg-red-200")}>Admin Panel</h1>
               </div>
 
             </div>
@@ -30,7 +35,8 @@ export default function Admin() {
             </div>
           )}
         </>
-      ) : null}
-    </Layout>
+      ) : null
+      }
+    </Layout >
   )
 }

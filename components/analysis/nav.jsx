@@ -6,6 +6,7 @@ export default function AnalNav() {
       <ul className="flex text-lg gap-4">
         <li><Link href="/analysis/">Summary</Link></li>
         <li><Link href="/analysis/spreadsheet_view/">Spreadsheet View</Link></li>
+        <li><Link href="/analysis/fermentation/">Fermentation</Link></li>
       </ul>
     </div>
   )

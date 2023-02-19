@@ -19,7 +19,8 @@ export default function Admin() {
 
               <AdminNav />
 
-              <div className="flex flex-col items-center">
+              <div className="flex items-stretch">
+                <div className="bg-gray-500"></div>
                 <h1>Admin Panel</h1>
               </div>
 
