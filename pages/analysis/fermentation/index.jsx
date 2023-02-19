@@ -1,4 +1,4 @@
-import { format } from "date-fns";
+import { format, add } from "date-fns";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import uuid from "react-uuid";
@@ -102,7 +102,7 @@ export default function Analysis() {
 
                     {items.map(item => (
                       <tr key={item.id}>
-                        <td key={uuid()}>{format(new Date(item.dateAdded), "yyyy-MM-dd")}</td>
+                        <td key={uuid()}>{format(add(new Date(item.dateAdded), { days: 1 }), "yyyy-MM-dd")}</td>
                         <td key={uuid()}>{item.tankNum}</td>
                         <td key={uuid()}>{item.productType}</td>
                         <td key={uuid()}>{item.ferm.agStart}</td>
