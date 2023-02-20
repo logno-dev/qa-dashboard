@@ -1,6 +1,6 @@
 import { useSession } from "next-auth/react";
-import AdminNav from "../../components/admin/nav";
-import Layout from "../../components/layout";
+import AdminNav from "../../../components/admin/nav";
+import Layout from "../../../components/layout";
 
 
 
