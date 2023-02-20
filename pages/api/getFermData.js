@@ -11,7 +11,7 @@ export default async function handler(req, res) {
 
 
   if (req.method === "GET") {
-    const data = await db.collection('batching').find({ dateAdded: { $gte: start, $lte: end } }).toArray()
+    const data = await db.collection('batching').find({ dateAdded: { $gte: start, $lte: end } }).sort({ dateAdded: 1 }).toArray()
     res.status(200).json(data)
   }
 

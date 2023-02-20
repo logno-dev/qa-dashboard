@@ -100,24 +100,30 @@ export default function Analysis() {
                   </thead>
                   <tbody>
 
-                    {items.map(item => (
-                      <tr key={item.id}>
-                        <td key={uuid()}>{format(add(new Date(item.dateAdded), { days: 1 }), "yyyy-MM-dd")}</td>
-                        <td key={uuid()}>{item.tankNum}</td>
-                        <td key={uuid()}>{item.productType}</td>
-                        <td key={uuid()}>{item.ferm.agStart}</td>
-                        <td key={uuid()}>{item.ferm.innocTime}</td>
-                        <td key={uuid()}>{item.ferm.agEnd}</td>
-                        <td key={uuid()}>{item.transfer.breakTimeStart}</td>
-                        <td key={uuid()}>{item.transfer.breakTimeEnd}</td>
-                        <td key={uuid()}>{item.transfer.pH}</td>
-                        <td key={uuid()}>{item.transfer.speed}</td>
-                        <td key={uuid()}>{item.transfer.temp}</td>
-                        <td key={uuid()}>{item.transfer.whiteMassWeight}</td>
-                        <td key={uuid()}>{item.transfer.holdTankWeightStart}</td>
-                        <td key={uuid()}>{item.transfer.holdTankWeightEnd}</td>
-                      </tr>
-                    ))}
+                    {items.map(item => {
+                      return (
+                        item.fermented ? (
+                          <tr key={item.id}>
+                            <td key={uuid()}>{format(add(new Date(item.dateAdded), { days: 1 }), "yyyy-MM-dd")}</td>
+                            <td key={uuid()}>{item.tankNum}</td>
+                            <td key={uuid()}>{item.productType}</td>
+                            <td key={uuid()}>{item.ferm.agStart}</td>
+                            <td key={uuid()}>{item.ferm.innocTime}</td>
+                            <td key={uuid()}>{item.ferm.agEnd}</td>
+                            <td key={uuid()}>{item.transfer.breakTimeStart}</td>
+                            <td key={uuid()}>{item.transfer.breakTimeEnd}</td>
+                            <td key={uuid()}>{item.transfer.pH}</td>
+                            <td key={uuid()}>{item.transfer.speed}</td>
+                            <td key={uuid()}>{item.transfer.temp}</td>
+                            <td key={uuid()}>{item.transfer.whiteMassWeight}</td>
+                            <td key={uuid()}>{item.transfer.holdTankWeightStart}</td>
+                            <td key={uuid()}>{item.transfer.holdTankWeightEnd}</td>
+                          </tr>
+                        ) : null
+                      )
+                    }
+
+                    )}
                   </tbody>
                 </table>
               </>
